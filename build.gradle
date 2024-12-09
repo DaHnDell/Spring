@@ -42,6 +42,12 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 
+	// https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api
+	// compileOnly 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0'
+
+	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.33'
+
 
 }
 
