@@ -13,5 +13,9 @@
 <body>
     <h1>Hello JSP!!!!!!!! 안녕하세요 제이에스피!!!!!!!</h1>
     <h1>${now}</h1>
+    <h1>${name}</h1>
+    <h1>${str}</h1>
+    <h1>${member}</h1>
+    <h1>${request}</h1>
 </body>
 </html>
