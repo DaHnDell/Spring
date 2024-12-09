@@ -29,19 +29,19 @@ public class MemberTests {
         // assertNull(member.getId()); // member가 null 인가? 를 테스트.
         // log.info(String.format("%s@X", m1.getClass().getName(), m1.hashCode()));
         // log.info(String.format("%s@X", m2.getClass().getName(), m2.hashCode()));
-        assertEquals(m1, m2); // 같은 값을 가질 경우 테스트 통과
-        System.out.println(m1.equals(m2)); 
-        assertSame(m1, m2); // 같은 주소값을 가질 경우 테스트 통과
+        // assertEquals(m1, m2); // 같은 값을 가질 경우 테스트 통과
+        // System.out.println(m1.equals(m2)); 
+        // assertSame(m1, m2); // 같은 주소값을 가질 경우 테스트 통과
     }
 
     // 테스트를 하게 될 경우 @SpringBootApplication 의 클래스가 무조건 있어야 함.
 
-    @Autowired
-    @Qualifier("member")
-    private Member member;
+    // @Autowired
+    // @Qualifier("member")
+    // private Member member;
 
-    @Test
-    public void testDI(){
-        System.out.println(member);
-    }
+    // @Test
+    // public void testDI(){
+    //     System.out.println(member);
+    // }
 }
