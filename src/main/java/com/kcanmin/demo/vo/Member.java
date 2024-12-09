@@ -4,17 +4,19 @@ import java.lang.System.Logger.Level;
 import java.util.logging.Logger;
 
 import org.apache.logging.log4j.LogManager;
+import org.springframework.stereotype.Component;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
+// import lombok.extern.log4j.Log4j2;
+// import lombok.extern.slf4j.Slf4j;
 
 
 @Data
 @Builder
 // @Slf4j
-@Log4j2
+// @Log4j2
+@Component 
 public class Member {
     private String id;
     private String pw;
