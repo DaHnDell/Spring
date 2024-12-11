@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.log4j.Log4j2;
@@ -12,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class PostServiceTests {
     @Autowired
+    @Qualifier("postService")
     private PostService service;
 
     @Test
@@ -23,6 +25,12 @@ public class PostServiceTests {
     public void testList(){
         System.out.println("??");
         service.list().forEach(log::info);
+    }
+
+    @Test
+    public void testWrite(){
+        System.out.println("!!");
+        service.write(null);
     }
 
 }
