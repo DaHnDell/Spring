@@ -116,3 +116,11 @@ PointCut = 조건식
 Weaving = Aspect의 흐름 양상
 
 advice 를 작용하려면 무조건 proxy 객체가 필요하다. 
+
+Spring aop : 기본적인 AOP 적용법.
+단점 : PointCut 활용 및 적용이 매우 어려운 편.
+메서드 이름으로만 기준을 잡기 때문.
+
+AspectJ Aop : expression 사용으로 pointCut 적용, 직관적 문법 + 적용 범위 넓음.
+
+advisor = ????????????????????????????? 실제로 할 일.
