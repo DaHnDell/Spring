@@ -98,3 +98,21 @@ IOC 컨테이너 생성 -> Bean 생성 -> 의존관계 주입 -> 초기화 콜�
 
 K - M - G - T 
 milli - micro - nano
+
+
+
+SpEl = Spring El 문법 
+
+#{} ${} 은 
+#을 썼을 때에는 자체 EXECPT 시행.
+
+SQL INJECTION
+
+Aspect = Advice + PointCut 
+Target = Aspect 가 적용되는 곳
+Advice = 할 일
+JoinPoint = 할 곳 Advice가 적용될 위치
+PointCut = 조건식
+Weaving = Aspect의 흐름 양상
+
+advice 를 작용하려면 무조건 proxy 객체가 필요하다. 
