@@ -124,3 +124,20 @@ Spring aop : 기본적인 AOP 적용법.
 AspectJ Aop : expression 사용으로 pointCut 적용, 직관적 문법 + 적용 범위 넓음.
 
 advisor = ????????????????????????????? 실제로 할 일.
+
+Execution 명시자
+
+접근 제한자는 생략 가능
+리턴 타입 명시
+클래스이름 및 이름 명시
+파라미터 명시
+
+ex = Execution(public Integer com.edu.aop."."(*));
+
+
+
+@Component 
+@SpringBoot
+
+
+@Test 코드는 무조건 퍼블릭으로 할 것.
