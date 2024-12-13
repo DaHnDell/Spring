@@ -1,4 +1,4 @@
-package com.kcanmin.member_post.com.kcanmin.member_post;
+package com.kcanmin.member_post;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

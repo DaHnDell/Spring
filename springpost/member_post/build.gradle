@@ -13,6 +13,7 @@ java {
 	}
 }
 
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -33,6 +34,18 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+
+// https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api
+implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+
+	
+// https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
+implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
+
 }
 
 tasks.named('test') {

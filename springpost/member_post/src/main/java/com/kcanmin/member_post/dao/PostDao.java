@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.Criteria;
+import com.kcanmin.member_post.dto.Criteria;
 import lombok.extern.slf4j.Slf4j;
-import utils.DBConn;
-import vo.Post;
+import com.kcanmin.member_post.utils.DBConn;
+import com.kcanmin.member_post.vo.Post;
 
 @Slf4j
 public class PostDao {

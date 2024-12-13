@@ -1,3 +1,7 @@
+진짜 절대로 폴더 밖에서 그레이들 실행 하지 말 것
+Gradle.build 파일이 있는 경로에서 실행해야 함.
+
+
 tomcat-logs-
 
 세션은 생성 시에 고유 id가 존재한다.
@@ -141,3 +145,9 @@ ex = Execution(public Integer com.edu.aop."."(*));
 
 
 @Test 코드는 무조건 퍼블릭으로 할 것.
+
+transaction - > propagation, isolation 
+트랜잭션은 일반적으로 한번에 실행되어야 하며 일괄 작업 중 다른 일을 수행하지 않게 하기 위해 사용.
+
+클래스 위에서 @Transactional 선언을 해 주면 클래스 전체가 트랜잭션이 됨.
+괄호를 이용해서 propagation, isolation 등급을 선언해 줄 수 있다.

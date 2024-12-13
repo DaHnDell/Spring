@@ -2,11 +2,13 @@ package com.kcanmin.member_post.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import dto.Criteria;
-import vo.Post;
+import com.kcanmin.member_post.dto.Criteria;
+import com.kcanmin.member_post.vo.Post;
 
+@Mapper
 public interface PostMapper {
 	List<Post> selectList(Criteria cri);
 	

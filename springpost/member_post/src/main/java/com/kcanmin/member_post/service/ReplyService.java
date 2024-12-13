@@ -3,8 +3,8 @@ package com.kcanmin.member_post.service;
 import java.util.List;
 import java.util.Map;
 
-import dto.ReplyCri;
-import vo.Reply;
+import com.kcanmin.member_post.dto.ReplyCri;
+import com.kcanmin.member_post.vo.Reply;
 
 public interface ReplyService {
 	

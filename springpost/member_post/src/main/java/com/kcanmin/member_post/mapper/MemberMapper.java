@@ -1,7 +1,10 @@
 package com.kcanmin.member_post.mapper;
 
-import vo.Member;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.kcanmin.member_post.vo.Member;
+
+@Mapper
 public interface MemberMapper {
 	int insert(Member member);
 	Member selectOne(String id);

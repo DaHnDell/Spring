@@ -2,17 +2,17 @@ package com.kcanmin.member_post.servlet.post;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import dto.Criteria;
-import service.PostService;
-import service.PostServiceImpl;
-import utils.Commons;
-import vo.Member;
+import com.kcanmin.member_post.dto.Criteria;
+import com.kcanmin.member_post.service.PostService;
+import com.kcanmin.member_post.service.PostServiceImpl;
+import com.kcanmin.member_post.utils.Commons;
+import com.kcanmin.member_post.vo.Member;
 
 @WebServlet("/post/remove")
 public class Remove extends HttpServlet {

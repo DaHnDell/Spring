@@ -5,17 +5,17 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import dto.Criteria;
-import service.PostService;
-import service.PostServiceImpl;
-import vo.Attach;
-import vo.Post;
+import com.kcanmin.member_post.dto.Criteria;
+import com.kcanmin.member_post.service.PostService;
+import com.kcanmin.member_post.service.PostServiceImpl;
+import com.kcanmin.member_post.vo.Attach;
+import com.kcanmin.member_post.vo.Post;
 
 @WebServlet("/post/write")
 public class Write extends HttpServlet{

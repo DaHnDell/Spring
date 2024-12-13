@@ -2,7 +2,7 @@ package com.kcanmin.member_post.service;
 
 import java.util.List;
 
-import vo.Member;
+import com.kcanmin.member_post.vo.Member;
 
 public interface MemberService {
 	

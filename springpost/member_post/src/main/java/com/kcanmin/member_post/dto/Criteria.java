@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

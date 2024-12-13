@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import mapper.MemberMapper;
-import utils.MybatisInIt;
-import vo.Member;
+import com.kcanmin.member_post.mapper.MemberMapper;
+import com.kcanmin.member_post.utils.MybatisInIt;
+import com.kcanmin.member_post.vo.Member;
 
 public class MemberServiceImpl implements MemberService {
 	@Override

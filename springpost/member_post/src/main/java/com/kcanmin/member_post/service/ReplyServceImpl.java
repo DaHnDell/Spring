@@ -6,14 +6,14 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dto.ReplyCri;
+import com.kcanmin.member_post.dto.ReplyCri;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import mapper.ReplyMapper;
-import utils.MybatisInIt;
-import vo.Member;
-import vo.Reply;
+import com.kcanmin.member_post.mapper.ReplyMapper;
+import com.kcanmin.member_post.utils.MybatisInIt;
+import com.kcanmin.member_post.vo.Member;
+import com.kcanmin.member_post.vo.Reply;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ReplyServceImpl implements ReplyService{

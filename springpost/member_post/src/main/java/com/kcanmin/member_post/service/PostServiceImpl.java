@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dto.Criteria;
-import mapper.AttachMapper;
-import mapper.PostMapper;
-import utils.MybatisInIt;
-import vo.Post;
+import com.kcanmin.member_post.dto.Criteria;
+import com.kcanmin.member_post.mapper.AttachMapper;
+import com.kcanmin.member_post.mapper.PostMapper;
+import com.kcanmin.member_post.utils.MybatisInIt;
+import com.kcanmin.member_post.vo.Post;
 
 public class PostServiceImpl implements PostService{
 	

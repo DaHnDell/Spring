@@ -2,8 +2,8 @@ package com.kcanmin.member_post.service;
 
 import java.util.List;
 
-import dto.Criteria;
-import vo.Post;
+import com.kcanmin.member_post.dto.Criteria;
+import com.kcanmin.member_post.vo.Post;
 
 public interface PostService {
 	

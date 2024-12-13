@@ -2,11 +2,13 @@ package com.kcanmin.member_post.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import dto.ReplyCri;
-import vo.Reply;
+import com.kcanmin.member_post.dto.ReplyCri;
+import com.kcanmin.member_post.vo.Reply;
 
+@Mapper
 public interface ReplyMapper {
 //	int write(Reply reply); ? 답글?
 	

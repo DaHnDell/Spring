@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import utils.DBConn;
-import vo.Member;
+import com.kcanmin.member_post.utils.DBConn;
+import com.kcanmin.member_post.vo.Member;
 
 public class MemberDao {
 	// CRUD

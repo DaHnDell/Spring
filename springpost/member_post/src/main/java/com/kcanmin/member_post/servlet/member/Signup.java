@@ -1,14 +1,14 @@
 package com.kcanmin.member_post.servlet.member;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import service.MemberService;
-import service.MemberServiceImpl;
-import vo.Member;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import com.kcanmin.member_post.service.MemberService;
+import com.kcanmin.member_post.service.MemberServiceImpl;
+import com.kcanmin.member_post.vo.Member;
 
 @WebServlet("/signup")
 public class Signup extends HttpServlet{
