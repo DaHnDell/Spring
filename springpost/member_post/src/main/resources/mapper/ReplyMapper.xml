@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.ReplyMapper">
-	<resultMap type="vo.Reply" id="reply">
+<mapper namespace="com.kcanmin.member_post.mapper.ReplyMapper">
+	<resultMap type="reply" id="reply">
 	
 	</resultMap>
 
@@ -24,11 +24,11 @@
 		delete from tbl_reply where pno = #{pno}
 	</delete>
 	
-	<select id="selectOne" resultType="vo.Reply">
+	<select id="selectOne" resultType="reply">
 		select * from tbl_reply where rno = #{rno}
 	</select>
 	
-	<select id="selectList" resultType="vo.Reply">
+	<select id="selectList" resultType="reply">
 		select * 
 		from tbl_reply tr
 		where pno = #{pno} 
@@ -37,11 +37,11 @@
 		limit #{cri.amount}
 	</select>
 
-	<select id="selectMyList" resultType="vo.Reply">
+	<select id="selectMyList" resultType="reply">
 		select * from tbl_reply where writer = #{writer}
 	</select>
 	
-	<select id="selectListByMe" resultType="vo.Reply">
+	<select id="selectListByMe" resultType="reply">
 		select *
 		from tbl_reply 
 		where writer = #{writer}

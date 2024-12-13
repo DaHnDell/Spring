@@ -21,13 +21,13 @@
 				<div class="col-md-3 ">
 					<div class="p-4 d-grid gap-2">
 					<c:if test="${empty member}">
-						<a href="signin" class="btn btn-sm btn-primary p-3 small fw-bold">
+						<a href="${cp}member/signin" class="btn btn-sm btn-primary p-3 small fw-bold">
 							<strong> log - in </strong>
 						</a>
 						<div class="small btn-group btn-group-sm bg-color-none">
-							<a href="signup" class="btn btn-outline-dark small fw-small">
+							<a href="${cp}member/signup" class="btn btn-outline-dark small fw-small">
 								<i> register new </i>
-							</a> <a href="signup.html"
+							</a> <a href="${cp}member/signup.html"
 								class="btn btn-outline-dark small fw-small"> <i> query account </i>
 							</a>
 						</div>
@@ -39,10 +39,10 @@
 									class="b-2 text-decoration-none">${member.name}</a></strong>!
 							</p>
 							<div class="small btn-group btn-group-sm bg-color-primary">
-								<a href="signout" class="btn btn-outline-dark small fw-small">
+								<a href="${cp}member/signout" class="btn btn-outline-dark small fw-small">
 									<i> log - out </i>
 								</a> 
-								<a href="mypage.html" class="btn btn-outline-dark small fw-small"> <i> my - page </i></a>
+								<a href="${cp}member/mypage" class="btn btn-outline-dark small fw-small"> <i> my - page </i></a>
 							</div>
 						</div>
 						</c:if>

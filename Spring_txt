@@ -151,3 +151,5 @@ transaction - > propagation, isolation
 
 클래스 위에서 @Transactional 선언을 해 주면 클래스 전체가 트랜잭션이 됨.
 괄호를 이용해서 propagation, isolation 등급을 선언해 줄 수 있다.
+
+// consumes, headers 는 이후 비동기때 사용.

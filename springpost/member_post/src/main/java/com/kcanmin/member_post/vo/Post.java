@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +13,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
+@Alias("post")
 public class Post {
 	private final Long pno; // 게시글 번호
 	private final String title; // 게시글 제목

@@ -2,10 +2,13 @@ package com.kcanmin.member_post.vo;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 // 클래스 메서드는 무조건 스태틱 키워드로 선언
 
 @Data
+@Alias("member") // 이렇게 하면 멤버가 됩니다. 풀 패키지 명을 쓰지 않아도 호출이 가능.
 public class Member {
 	private String id;
 	private String pw;

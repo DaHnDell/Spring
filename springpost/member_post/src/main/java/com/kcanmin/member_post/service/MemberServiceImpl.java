@@ -1,14 +1,18 @@
 package com.kcanmin.member_post.service;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
-
+import org.springframework.stereotype.Service;
 import com.kcanmin.member_post.mapper.MemberMapper;
 import com.kcanmin.member_post.utils.MybatisInIt;
 import com.kcanmin.member_post.vo.Member;
+import lombok.AllArgsConstructor;
 
+@Service
+@AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
+	private MemberMapper memberMapper;
+	
 	@Override
 	public int register(Member member) {
 		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
@@ -19,10 +23,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member findBy(String id) {
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			return mapper.selectOne(id);
-		}
+			return memberMapper.selectOne(id);
 	}
 
 	@Override
