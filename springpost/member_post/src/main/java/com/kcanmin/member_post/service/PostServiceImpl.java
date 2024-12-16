@@ -2,92 +2,71 @@ package com.kcanmin.member_post.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+// import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kcanmin.member_post.dto.Criteria;
 import com.kcanmin.member_post.mapper.AttachMapper;
 import com.kcanmin.member_post.mapper.PostMapper;
-import com.kcanmin.member_post.utils.MybatisInIt;
+import com.kcanmin.member_post.mapper.ReplyMapper;
+// import com.kcanmin.member_post.utils.MybatisInIt;
 import com.kcanmin.member_post.vo.Post;
 
+import lombok.AllArgsConstructor;
+
+@Service
+@Transactional
+@AllArgsConstructor
 public class PostServiceImpl implements PostService{
-	
-	public static void main(String[] args) {
-		new PostServiceImpl().write(Post.builder().title("title").content("abcd").writer("abcd").cno(2).build());
-	}
+
+	private PostMapper postMapper;
+	private AttachMapper attachMapper;
+	private ReplyMapper replyMapper;
+
 	
 	@Override
 	public int write(Post post){
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			System.out.println(post); // post.getPno() = null;
-			mapper.insert(post);
-			System.out.println(post); // post.getPno() != null;
+			postMapper.insert(post);
 			post.getAttachs().forEach(a->{
 				a.setPno(post.getPno());
 				attachMapper.insert(a);
 			});
 			return 0;
 		}
-	}
 	
 	@Override
 	public int modify(Post post) {
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.update(post);
-		}
+		return postMapper.update(post);
 	}
 	
 	@Override
 	public int remove(Long pno) {
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			attachMapper.delete(pno);
-			return mapper.delete(pno);
-		}
+		attachMapper.delete(pno);
+		replyMapper.deleteAll(pno);
+		return postMapper.delete(pno);
 	}
 
 	@Override
 	public Post findBy(Long pno) {
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			Post post = mapper.selectOne(pno);
-			post.setAttachs(attachMapper.selectList(pno));
-			return post;
-		}
+		return postMapper.selectOne(pno);
 	}
 
 	@Override
 	public List<Post> list(Criteria cri){
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.selectList(cri);
-		}
+		return postMapper.selectList(cri);
 	}
 	
 	@Override
 	public int count(Criteria cri) {
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.getCount(cri);
-		}
+		return postMapper.getCount(cri);
 	}
 	
 	@Override
 	public Post view(Long pno) {
-		try(SqlSession session = MybatisInIt.getInstance().sqlSessionFactory().openSession(true)){
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			mapper.increaseViewCount(pno);
-			Post post = mapper.selectOne(pno);
-			post.setAttachs(attachMapper.selectList(pno));
-			return mapper.selectOne(pno);
-		}
+		postMapper.increaseViewCount(pno);
+		Post post = postMapper.selectOne(pno);
+		post.setAttachs(attachMapper.selectList(pno));
+		return postMapper.selectOne(pno);
 	}
-	
-	
 }

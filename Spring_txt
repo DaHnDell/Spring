@@ -153,3 +153,37 @@ transaction - > propagation, isolation
 괄호를 이용해서 propagation, isolation 등급을 선언해 줄 수 있다.
 
 // consumes, headers 는 이후 비동기때 사용.
+
+
+Log4j2
+Log4jdbc
+
+
+yml에서 datasource가 작동하지 않을 때 
+직접 datasource를 정의해 줘야 함.
+루트컨피그 내부에서 루트컨피그 클래스를 통해 
+히카리데이타소스 를 반환하는 메서드를 빈으로 등록해 주면 된다.
+
+루트config, 웹congif, 파일config 이렇게 3 개의 콘피그 파일을 주로 등록, 사용하게 된다.
+
+log4j2jdbc를 활용하여 표를 볼 수도 있는데(resultmap), 여기서 칼럼 수는 무조건 다 나오고 
+select 추가했던 colomn들에 해당하는 값들만 매핑되며 조회되지 않은 값들은 unread 상태가 된다.
+
+1. 모든 로거의 최상위 부모는 Root 로거이다.
+2. class 에서 로그를 출력하는데 사용된 logger가 log4j.xml 에 존재하지 않는다면, 부모 로거를 찾는다.
+
+xml 파일에서 <Logger> 태그에 들어가는 속성인 name은 모두 패키지명이다. 클래스명까지도 들어갈 수 있다. 
+level 속성은 로그의 레벨을 지정한다. 
+
+로그 설정을 해 줄 때 별다른 설정이 없을 경우에 루트 파일을 따라가는 의미를 지닌다.
+<Logger> 태그의 자식 요소로 올 수 있는 <Appender-ref> 태그를 활용하여 
+로그가 기록될 수 있는 파일을 지정해 줄 수 있다. 
+
+로그시스템상 return 과 param 값들은 모두 사용 가능하다.
+
+test 시 다른 로그를 사용하고 싶다면 테스트 설정이 담긴 yml 파일을 테스트 폴더에도 하나 더 생성해 주면 됨.
+보통 resources 내부에 config 패키지를 만들고 내부에 logback.xml을 추가할 경우 디폴트 경로에 로그 기록을 작성함. 
+
+kingpad ya~
+
+

@@ -14,7 +14,7 @@
             <h2 class="text-center fw-bold "><i class="fa-solid fa-right-to-bracket text-primary"></i> Sign-In </h2>
             <hr>
             <form name = "frm" method="post" class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto card p-3 my-5">
-                <input type="text" class="form-control my-3" id="id" placeholder="Enter ID" name = id value="${cookie['remember-id'].value}">
+                <input type="text" class="form-control my-3" id="id" placeholder="Enter ID" name = "id" value="${cookie['remember-id'].value}">
                 <input type="password" class="form-control my-3" id="pw" placeholder="Enter PW" name = "pw">
                 <div class="form-check form-switch my-3">
                     <input class="form-check-input" type="checkbox" id="mySwitch" name="remember-id" value="${cookie['remember-id']}" ${empty cookie['remember-id'] ? '' : checked}>
