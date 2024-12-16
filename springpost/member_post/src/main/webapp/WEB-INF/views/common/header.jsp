@@ -9,7 +9,7 @@
 <div class="border border-warning">	
 	<nav class="navbar bg-dark navbar-expand-sm">
 	    <ul class="navbar-nav container justify-content-start">
-	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}index">Main</a></li>
+	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="index">Main</a></li>
 	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}">My</a></li>
 	        <li class="mx-3 nav-item"><a class="nav-link text-warning" href="${cp}post/list?category=1">Notice</a></li>
 	        <li class="mx-3 nav-item dropdown">

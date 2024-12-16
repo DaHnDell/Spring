@@ -50,7 +50,7 @@ public class MemberController {
     if(memberService.login(member.getId(), member.getPw())){
       // 성공
       session.setAttribute("member", memberService.findBy(member.getId()));
-      Cookie cookie = new Cookie("remember-id", "yes");
+      Cookie cookie = new Cookie("remember-id", member.getId());
       cookie.setPath("/");
       // id 저장 시 cookie 에 remember-id 를 지정
       if(remember != null){

@@ -14,7 +14,8 @@
 	<result column="cno" property="cno"/>
 	<result column="attach_flag"/>
 </resultMap>
-  <select id="selectList" resultType="post">
+
+  <select id="selectList" resultMap="post">
   	select tp.*, (select count(*) from tbl_attach ta where ta.pno = tp.pno) attach_flag 
   	from tbl_post tp 
   	where cno = #{category}

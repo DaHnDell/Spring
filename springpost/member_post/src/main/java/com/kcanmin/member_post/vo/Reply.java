@@ -19,8 +19,8 @@ public class Reply {
 	private String content;
 	private Date regDate;
 	private Date updateDate;
-	private boolean hidden;
-	private int likes;
+	private Boolean hidden;
+	private Integer likes;
 	private String writer;
 	private Long pno;
 }

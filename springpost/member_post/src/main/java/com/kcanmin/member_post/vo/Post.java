@@ -5,46 +5,47 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 // import lombok.AllArgsConstructor;
-import lombok.Builder;
+// import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+// @Builder
 // @AllArgsConstructor
 @Alias("post")
 public class Post {
-	private final Long pno; // 게시글 번호
-	private final String title; // 게시글 제목
-	private final String writer; // 게시글 작성자
-	private final String content; // 게시글 내용
-	private final Long viewCnt; // 게시글 조회수
-	private final Date regDate; // 게시글 등록일
-	private final Date updateDate;
-	private final int cno;
-	private final boolean attachFlag;
+	private Long pno; // 게시글 번호
+	private String title; // 게시글 제목
+	private String writer; // 게시글 작성자
+	private String content; // 게시글 내용
+	private Long viewCnt; // 게시글 조회수
+	private Date regDate; // 게시글 등록일
+	private Date updateDate;
+	private Integer cno;
+	private Boolean attachFlag;
 	// @Builder.Default
-	// private List<Attach> attachs = new ArrayList<>();
+	private List<Attach> attachs = new ArrayList<>();
+
+	// @ConstructorBinding
+	public Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate,
+	Integer cno, Boolean attachFlag) {
+		super();
+		this.pno = pno;
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+		this.viewCnt = viewCnt;
+		this.regDate = regDate;
+		this.updateDate = updateDate;
+		this.cno = cno;
+		this.attachFlag = attachFlag;
+	}
+	
 //	public final Post() {
 //		
 //	}
-
-
-	// public Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate,
-	// 		int cno, boolean attachFlag) {
-	// 	super();
-	// 	this.pno = pno;
-	// 	this.title = title;
-	// 	this.writer = writer;
-	// 	this.content = content;
-	// 	this.viewCnt = viewCnt;
-	// 	this.regDate = regDate;
-	// 	this.updateDate = updateDate;
-	// 	this.cno = cno;
-	// 	this.attachFlag = attachFlag;
-	// }
-	
 //	private Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate, ) {
 //		
 //		this.pno = pno;

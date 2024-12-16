@@ -1,6 +1,8 @@
 package com.kcanmin.member_post.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 // import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,9 @@ import com.kcanmin.member_post.mapper.ReplyMapper;
 import com.kcanmin.member_post.vo.Post;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 @Transactional
 @AllArgsConstructor
@@ -27,11 +31,19 @@ public class PostServiceImpl implements PostService{
 	
 	@Override
 	public int write(Post post){
-			postMapper.insert(post);
-			post.getAttachs().forEach(a->{
-				a.setPno(post.getPno());
-				attachMapper.insert(a);
-			});
+		// Optional<Integer> nullCno = OptionalInt(post.getCno());
+
+		log.info(post);
+		log.info(post.getCno());
+		if(post.getCno() == null)	{
+			post.setCno(2);
+		}
+		log.info(post.getCno());
+		postMapper.insert(post);
+		post.getAttachs().forEach(a->{
+			a.setPno(post.getPno());
+			attachMapper.insert(a);
+		});
 			return 0;
 		}
 	

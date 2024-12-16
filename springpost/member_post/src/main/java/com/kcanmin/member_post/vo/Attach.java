@@ -11,6 +11,6 @@ public class Attach {
 	private String uuid;
 	private String origin;
 	private String path;
-	private boolean image;
+	private Boolean image;
 	private Long pno;
 }
