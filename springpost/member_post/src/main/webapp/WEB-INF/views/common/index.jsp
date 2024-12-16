@@ -27,7 +27,7 @@
 						<div class="small btn-group btn-group-sm bg-color-none">
 							<a href="${cp}member/signup" class="btn btn-outline-dark small fw-small">
 								<i> register new </i>
-							</a> <a href="${cp}member/signup.html"
+							</a> <a href="${cp}member/signup"
 								class="btn btn-outline-dark small fw-small"> <i> query account </i>
 							</a>
 						</div>
@@ -39,7 +39,7 @@
 									class="b-2 text-decoration-none">${member.name}</a></strong>!
 							</p>
 							<div class="small btn-group btn-group-sm bg-color-primary">
-								<a href="${cp}member/signout" class="btn btn-outline-dark small fw-small">
+								<a href="${cp}member/logout" class="btn btn-outline-dark small fw-small">
 									<i> log - out </i>
 								</a> 
 								<a href="${cp}member/mypage" class="btn btn-outline-dark small fw-small"> <i> my - page </i></a>
