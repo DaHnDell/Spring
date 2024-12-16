@@ -41,10 +41,4 @@ public class PostController {
     service.write(post);
     return "redirect:list?" + cri.getQs2();
   }
-  
-  
-  
-  
-
-
 }

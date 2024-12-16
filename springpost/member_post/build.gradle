@@ -4,14 +4,6 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.6'
 }
 
-// sourceSets {
-//     main {
-//         resources {
-//             srcDirs = [src/main/resources]
-//         }
-//     }
-// }
-
 group = 'com.kcanmin'
 version = '0.0.1-SNAPSHOT'
 
@@ -21,6 +13,10 @@ java {
 	}
 }
 
+configurations { 
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
 
 configurations {
 	compileOnly {
@@ -51,7 +47,6 @@ implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
 // https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api
 implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
-
 	
 // https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
 implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
@@ -60,8 +55,12 @@ implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
 implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
-implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.2'
+// implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.2'
 
+implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+implementation 'org.springframework.boot:spring-boot-devtools:3.4.0'
 
 }
 
