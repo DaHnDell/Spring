@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.kcanmin.member_post.vo.Member;
+
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -24,5 +26,11 @@ public class MemberMapperTests {
   @Test
   public void testSignin(){
     log.info(mapper.selectOne("1234"));
+  }
+
+  @Test
+  public void testSignup(){
+    Member member = Member.builder().id("abcdef").pw("1234").name("롸").build();
+    mapper.insert(member);
   }
 }
