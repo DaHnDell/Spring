@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.kcanmin.member_post.dto.Criteria;
 import com.kcanmin.member_post.dto.PageDto;
-import com.kcanmin.member_post.service.MemberService;
+// import com.kcanmin.member_post.service.MemberService;
 import com.kcanmin.member_post.service.PostService;
 import com.kcanmin.member_post.vo.Member;
 import com.kcanmin.member_post.vo.Post;
 
-import io.micrometer.common.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -31,7 +30,7 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 public class PostController {
   private PostService service;
-  private MemberService memberService;
+  // private MemberService memberService;
 
   @GetMapping("list")
   public String list(Criteria cri, Model model) {
