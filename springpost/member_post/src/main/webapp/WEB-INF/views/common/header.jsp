@@ -3,7 +3,7 @@
 <header class="container-fluid">
        <div class="container clearfix p-2">
            <a href="${cp}index" class="float-start"><img src="${cp}images/biglogo.png" alt="LOGO" class="img-fluid border-warning" width="250"></a>
-           <h1 class="text-center fw-bold p-3">TJ UI BOARD DEV LAYOUT</h1>
+           <h1 class="text-center fw-bold p-3">TJ UI BOARD DEV LAYOUT ${test}</h1>
        </div>
 </header>
 <div class="border border-warning">	
