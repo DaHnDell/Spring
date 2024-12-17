@@ -1,8 +1,6 @@
 package com.kcanmin.member_post.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 // import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,6 @@ import com.kcanmin.member_post.dto.Criteria;
 import com.kcanmin.member_post.mapper.AttachMapper;
 import com.kcanmin.member_post.mapper.PostMapper;
 import com.kcanmin.member_post.mapper.ReplyMapper;
-// import com.kcanmin.member_post.utils.MybatisInIt;
 import com.kcanmin.member_post.vo.Post;
 
 import lombok.AllArgsConstructor;

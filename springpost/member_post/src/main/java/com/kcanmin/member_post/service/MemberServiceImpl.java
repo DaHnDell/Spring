@@ -1,10 +1,8 @@
 package com.kcanmin.member_post.service;
 
 import java.util.List;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import com.kcanmin.member_post.mapper.MemberMapper;
-import com.kcanmin.member_post.utils.MybatisInIt;
 import com.kcanmin.member_post.vo.Member;
 import lombok.AllArgsConstructor;
 

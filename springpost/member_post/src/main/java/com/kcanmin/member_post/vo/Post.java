@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-import org.springframework.boot.context.properties.bind.ConstructorBinding;
+// import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 // import lombok.AllArgsConstructor;
 // import lombok.Builder;
