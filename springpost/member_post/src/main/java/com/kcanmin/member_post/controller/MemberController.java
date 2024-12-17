@@ -50,7 +50,7 @@ public class MemberController {
  
   @RequestMapping(value = {"", "*"}, method = RequestMethod.PUT) @ResponseBody
   public Member all2() {
-    return new Member(); // ㅇㅇ
+    return new Member(); 
   }
   
   // consumes, headers 는 이후 비동기때 사용.
@@ -70,7 +70,6 @@ public class MemberController {
     // 옵셔널 = null + 기본값
     // required = 기본값, value = 탐색할 value 가 있는 대상의 name
     // @Nullable 널 가능 여부 추가
-    
     // get 방식의 메서드를 활용할 경우에 post 와 리다이렉션(새로고침 등) 의 문제가 발생하지 않음.
 
     log.info(remember);  

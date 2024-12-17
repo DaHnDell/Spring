@@ -1,0 +1,281 @@
+진짜 절대로 폴더 밖에서 그레이들 실행 하지 말 것
+Gradle.build 파일이 있는 경로에서 실행해야 함.
+
+
+tomcat-logs-
+
+세션은 생성 시에 고유 id가 존재한다.
+
+세션 = 서버 / 쿠키 = 클라
+
+
+JSession = 유통기한이 session의 라이프사이클에 맞춰져 있음. 단순 세션으로만 되어 있으면 브라우저가 꺼질 때까지
+키와 밸류로 구성되어 있고 톰캣이 만들어낸 것, 16진수, 이 값이 같으면 같은 사용자로서 인정함. 
+즉 세션의 동일 여부를 판단
+
+req.getsession을 했을 경우 세션이 있으면 있는거 가져다주고 없으면 새로 만들어서 가져다 줌.
+세션은 사실 쿠키로 만든 것.
+세션을 통해 로그인을 구현하는 거지, 세션이 곧 로그인은 아님.
+
+세션의 아이디를 통해 톰캣은 이 사용자가 그 사용자가 맞는지 계속해서 확인함. 
+(이게 1차, 2차로는 구현부에서 아이디 어트리뷰트를 가져와서 판단함)
+
+톰캣은 웹서버의 기능도 가능
+(서블릿 컨테이너)
+어떤 HTTP로 했는가, 어떤 서버 Status로 하는지.
+
+날짜 옆에 사용하는 메서드, http 버전도 포함함.
+
+400 = 클라규칙
+500 = 서버오류
+
+200 = 성공
+300 = 일시적 이동
+302 = 접근을 허용하지는 않지만 일시적으로 사용이 불가함. 프로그래밍적 영역. 즉 서버 응답
+
+Log 는 소프트웨어의 이벤트를 기록하고, 동작상태를 파악하거나 동작 파악을 통해 문제를 찾아내고 해결하기 위해 디자인되었음. 
+응용 프로그램의 실행에 대한 흐름과 에러 확인 가능
+프레임워크를 이용하여 간단하고 쉬운 사용환경 조성 가능
+모듈별로 유연하게 메세지 출력 가능
+
+
+
+DEBUG(많이 사용되지는 않음) / INFO(최소단계, 보통 이걸 최소단계 로깅으로 봄, 테스트) / WARNING(실행부, 경고) / ERROR(예외, 흐름제어) / FATAL(치명적 오류) / TRACE(디버그보다 상세한 경로, 모든 흐름 출력)
+사용법 = log.info("msg");
+
+useragent = 사용자 정보를 기록하는 문자열 정보(js) / navigator 
+
+DNS = ip와 도메인 주소를 맵핑해주는 구조
+A = ip 맵핑 / CNAME = 도메인 맵핑
+
+메인 도메인과 서브 도메인 
+
+
+프론트 처리는 엔진엑스가 도메인에 따라서 프록시 처리를 해줌 이게 프론트 처리 
+
+Spring boot initializr 
+IOC - DI / DL 
+Logger(Log4j2)
+TestCode(Junit5)
+
+Spring Container(라이프싸이클이 복잡한 편 )
+application.properties 이외에도 (XML, Annotaion) 기반의 설정도 가능
+DI 
+AOP
+
+콜백이라고 하는 것은 주로 콜백함수를 부를 때 사용되는 용어이며 콜백함수를 등록하면 특정 이벤트가 발생했을 때해당 메소드가 호출된다.
+즉 조건에 따라 실행될 수도 실행되지 않을 수도 있는 개념이라고 보면 된다. 
+
+스프링 빈즈도 위와 같은 원리로 초기화 작업과 종료 작업이 나눠서 진행된다. 
+
+@Bean 어노테이션은 메서드 앞에서 작동함
+
+@Component, @Service, @Controller 는 클래스 앞에서 선언해줘야함
+
+생성자 주입 : 객체의 생성과 의존관계 주입이 동시에 일어남
+Setter, Field 주입 : 객체의 생성  - > 의존관계 주입
+
+Mapper 
+
+Spring 컨테이너는 인스턴스 생성 방식을 두가지 종류 중 하나를 직접 채택함. 
+1 만일 해당 클래스가 어떤 인터페이스를 구현하고 있다면 , 인터페이스 구현을 통해 객체를 생성함.(직접 만든 것이 아니더라도..) 
+2 상속을 통해서 객체 생성
+
+생성자 주입에서는 객체 생성, 의존관계 주입이 하나의 단계에서 일어나는 것.
+
+IOC 컨테이너 생성 -> Bean 생성 -> 의존관계 주입 -> 초기화 콜백 메소드 호출 -> 사용 -> 소멸 전 콜백 메소드 호출 -> 스프링 종료
+
+@PostConstruct @PreDestroy
+생성 이후 / 소멸 이전 
+
+초기화할때 할일, 소멸할때 할 일 을 지정해 줌.
+
+@AutoWired
+@Service
+@Controller
+@Mapper
+-- 스프링 코어 어노테이션 
+
+@Resource 
+@Inject 
+
+
+K - M - G - T 
+milli - micro - nano
+
+
+
+SpEl = Spring El 문법 
+
+#{} ${} 은 
+#을 썼을 때에는 자체 EXECPT 시행.
+
+SQL INJECTION
+
+Aspect = Advice + PointCut 
+Target = Aspect 가 적용되는 곳
+Advice = 할 일
+JoinPoint = 할 곳 Advice가 적용될 위치
+PointCut = 조건식
+Weaving = Aspect의 흐름 양상
+
+advice 를 작용하려면 무조건 proxy 객체가 필요하다. 
+
+Spring aop : 기본적인 AOP 적용법.
+단점 : PointCut 활용 및 적용이 매우 어려운 편.
+메서드 이름으로만 기준을 잡기 때문.
+
+AspectJ Aop : expression 사용으로 pointCut 적용, 직관적 문법 + 적용 범위 넓음.
+
+advisor = ????????????????????????????? 실제로 할 일.
+
+Execution 명시자
+
+접근 제한자는 생략 가능
+리턴 타입 명시
+클래스이름 및 이름 명시
+파라미터 명시
+
+ex = Execution(public Integer com.edu.aop."."(*));
+
+
+
+@Component 
+@SpringBoot
+
+
+@Test 코드는 무조건 퍼블릭으로 할 것.
+
+transaction - > propagation, isolation 
+트랜잭션은 일반적으로 한번에 실행되어야 하며 일괄 작업 중 다른 일을 수행하지 않게 하기 위해 사용.
+
+클래스 위에서 @Transactional 선언을 해 주면 클래스 전체가 트랜잭션이 됨.
+괄호를 이용해서 propagation, isolation 등급을 선언해 줄 수 있다.
+
+// consumes, headers 는 이후 비동기때 사용.
+
+
+Log4j2
+Log4jdbc
+
+
+yml에서 datasource가 작동하지 않을 때 
+직접 datasource를 정의해 줘야 함.
+루트컨피그 내부에서 루트컨피그 클래스를 통해 
+히카리데이타소스 를 반환하는 메서드를 빈으로 등록해 주면 된다.
+
+루트config, 웹congif, 파일config 이렇게 3 개의 콘피그 파일을 주로 등록, 사용하게 된다.
+
+log4j2jdbc를 활용하여 표를 볼 수도 있는데(resultmap), 여기서 칼럼 수는 무조건 다 나오고 
+select 추가했던 colomn들에 해당하는 값들만 매핑되며 조회되지 않은 값들은 unread 상태가 된다.
+
+1. 모든 로거의 최상위 부모는 Root 로거이다.
+2. class 에서 로그를 출력하는데 사용된 logger가 log4j.xml 에 존재하지 않는다면, 부모 로거를 찾는다.
+
+xml 파일에서 <Logger> 태그에 들어가는 속성인 name은 모두 패키지명이다. 클래스명까지도 들어갈 수 있다. 
+level 속성은 로그의 레벨을 지정한다. 
+
+로그 설정을 해 줄 때 별다른 설정이 없을 경우에 루트 파일을 따라가는 의미를 지닌다.
+<Logger> 태그의 자식 요소로 올 수 있는 <Appender-ref> 태그를 활용하여 
+로그가 기록될 수 있는 파일을 지정해 줄 수 있다. 
+
+로그시스템상 return 과 param 값들은 모두 사용 가능하다.
+
+test 시 다른 로그를 사용하고 싶다면 테스트 설정이 담긴 yml 파일을 테스트 폴더에도 하나 더 생성해 주면 됨.
+보통 resources 내부에 config 패키지를 만들고 내부에 logback.xml을 추가할 경우 디폴트 경로에 로그 기록을 작성함. 
+
+kingpad ya~
+
+
+@AllArgsConstructor
+@Builder
+@Lombok
+@Data
+Spring container는 무조건 하나의 생성자만 인식함. 따라서 일반적으로 Allargsconstructor 하나 사용하는 편
+
+
+
+Front controller
+프론트 컨트롤러
+프론트 컨트롤러는 mvc 패턴에서 사용되던 서블릿과 같은 개념. 
+
+스프링에서는 디스패쳐 서블릿이 있음. (기본 프론트 컨트롤러)
+
+리퀘스트맵핑이라는 핵심 어노테이션 
+스프링 컨트롤러가(프론트 컨트롤러가) url 형태를 분석하고, 리퀘스트맵핑에 등록되어 있는 형태의 
+메서드들을 맵핑하여 반영해 준다. 만약 찾지 못한다면, 그게 404이다. 
+
+model 속성은 request 스코프에 있는 것들을 addAtribute 하기 위한 것.
+
+viewResolver 는 인터페이스로 구현되어 있다. 꼭 jsp가 아니어도, templates page나 bean 도 그 대상이 될 수 있다. 
+
+-----------------프론트 컨트롤러 직접 만들어 볼 것.
+
+
+만약에 메서드들에서 요구하는 파라미터가 없다면 400 에러가 발생하게 된다. 
+즉 메서드가 요구하는 파라미터는 반드시 요구되는 값이다. 
+
+static 폴더는 부트 이니셜라이징을 통해 자동 생성된다. 
+특히, 이미지 파일, 파비콘 등은 여기서 asset 이라는 패키지에 감싸져서 등록하는 경우가 많다.
+
+  // 웹리스너 어노테이션으로 하는 것이 아니라 빈의 라이프사이클에게 선물해주는 것.
+  // 원칙에 위배되지 않는 pojo 문법으로 익명클래스를 가져다주는 형태로 하여도 Spring이 알아서 작동함.
+  // contextpath 리스너를 살리는 형태로도 가능하긴 하지만, 이에 따른 추가적인 작업이 더욱 더 복잡함.
+  // 또한 모듈화, 응집성 측면에서도 webconfig 에 정의해주는 것이 더 타당하다. 
+
+컨트롤러어드바이스
+ControllerAdvice 는 API 동작 중 예외가 발생했을 때, 적절히 처리하기 위함이다. 
+
+서버측의 에러는 500번대의 에러들을 의미한다. 400은 애초에 클라 오류라 컨트롤러에 도착하지도 않는다. 
+
+컨트롤러어드바이스 어노테이션
+@ControllerAdvice
+
+컨트롤러의 가장 큰 특징은 RequestMapping의 여부. 즉, view가 존재한다. 파라미터를 수집한다. 
+
+
+같은 컨트롤러에 위치한 @Exiptionhandler 메서드 중 해당 예외를 처리할 수 있는 메서드
+@ControllerAdvice 클래스에 위치한 @ExceptionHandler 메서드 검색. 
+컨트롤러어드바이스에게 주면 예외를 다룰 컨트롤러가 속한 패키지를 설정하거나, 
+특정 어노테이션이 적용된 컨트롤러를 대상하거나, 특정 타입 또는 그 하위 타입인 컨트롤러를 대상한다.
+
+// consumes, headers 는 이후 비동기때 사용.
+// /member/signin 으로 오면 이 메서드를 쓸게~ 하는 어노테이션.
+// return type 
+// String : 해당 위치의 jsp (ex: /WEB-INF/views) 로 foward
+// void : 접속 requestURI 위치를 반환 foward
+// 옵셔널 = null + 기본값
+// required = 기본값, value = 탐색할 value 가 있는 대상의 name
+// @Nullable 널 가능 여부 추가
+// get 방식의 메서드를 활용할 경우에 post 와 리다이렉션(새로고침 등) 의 문제가 발생하지 않음.
+// return "redirect:/member/signin";
+// return "redirect:signin?msg=failed";
+// model.addAttribute("msg", "failed"); 
+// 모델의 경우 일반적인 포워딩을 위함. 
+// rttr.addAttribute("msg", "failed"); 
+// rttr의 경우 모델이 해야 하는 일과 정확히 같은 규칙의 일을 수행한다. 
+
+
+modleandview = view 와 attribute들을 관리
+
+Filter - tomcat 종속적. web xml에서 하는 서버 종속적 관계를 의미. 구현 및 적용이 쉽지만,
+조건에 대한 세부사항을 url으로밖에 하지 못함.
+필터가 다음 필터를 호출하기 위해서는 필터 체이닝(다음 필터 호출)을 해주어야 한다. 
+이때 request, response 객체를 넘겨주므로 우리가 원하는 request, response 객체를 넣어줄 수 있다.
+
+AOP - 필터가 하지 못했던 강력한 필터링의 제한을 AOP의 어노테이션 처리를 통해 정확한 제어
+
+Interceptor - req / resp  
+prehandle(컨트롤러 호출되기 전에 ), postHandle(컨트롤러 호출 후), afterCompletion(view 렌더링 후)
+
+필터는 Request와 Response를 조작할 수 있지만, 인터셉터는 조작할 수 없다.
+인터셉터는 무조건 불린값만 반환하고, 참조만 가능하다. 
+
+필터(Filter)는 특정 요청과 컨트롤러에 관계없이 전역적으로 처리해야 하는 작업이나 
+웹 어플리케이션에 전반적으로 사용되는 기능을 구현할 때 적용하고, 
+인터셉터(Interceptor)는 클라이언트의 요청과 관련된 작업에 대해 추가적인 요구사항을 만족해야 할 때 적용한다.
+
+
+--------------------------charsetFilter가 Spring에 따로 적용되는것이 있는지 알아봐야 함.
+
+
