@@ -1,14 +1,16 @@
 package com.kcanmin.member_post.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.kcanmin.member_post.service.MemberService;
-import com.kcanmin.member_post.service.MemberServiceImpl;
 import com.kcanmin.member_post.vo.Member;
 
 import jakarta.servlet.http.Cookie;
@@ -26,6 +28,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("member")
 @AllArgsConstructor
 public class MemberController {
+  // private MemberService service
+  InternalResourceViewResolver resolver;
+
+  @GetMapping("mv")
+  public ModelAndView mvR(ModelAndView mv){
+    mv.addObject("test", "abcd");
+    mv.setViewName("common/index");
+    log.info(mv);
+    return mv;
+  }
+
+  @RequestMapping(value = {"", "*"}, method = RequestMethod.GET) @ResponseBody
+  public Member all() {
+    DispatcherServlet servlet;
+    log.info(resolver);
+    log.info(resolver.getAttributesMap());
+    log.info(resolver.getOrder());
+    return new Member();
+  }
+ 
+  @RequestMapping(value = {"", "*"}, method = RequestMethod.PUT) @ResponseBody
+  public Member all2() {
+    return new Member(); // ㅇㅇ
+  }
+  
   // consumes, headers 는 이후 비동기때 사용.
   // /member/signin 으로 오면 이 메서드를 쓸게~ 하는 어노테이션.
   // return type 
