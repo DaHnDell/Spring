@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -20,8 +19,7 @@ public class CharsetFilter implements Filter{
 		request.setCharacterEncoding("utf-8");
 		// 실제 처리부
 		chain.doFilter(request, response);
-		// TODO Auto-generated method stub
-		
+		// 안녕하세요?
 	}
 	
 	
