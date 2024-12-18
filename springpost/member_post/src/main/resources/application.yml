@@ -32,3 +32,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   
+
+springdoc:
+  swagger-ui:
+    path: /swag
