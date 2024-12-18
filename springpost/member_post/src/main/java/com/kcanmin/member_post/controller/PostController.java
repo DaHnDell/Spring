@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +12,7 @@ import com.kcanmin.member_post.aop.MyPost;
 import com.kcanmin.member_post.aop.SigninCheck;
 import com.kcanmin.member_post.dto.Criteria;
 import com.kcanmin.member_post.dto.PageDto;
-// import com.kcanmin.member_post.service.MemberService;
+import com.kcanmin.member_post.service.MemberService;
 import com.kcanmin.member_post.service.PostService;
 import com.kcanmin.member_post.vo.Member;
 import com.kcanmin.member_post.vo.Post;
@@ -45,18 +44,20 @@ public class PostController {
 
   @GetMapping("write")
   @SigninCheck 
-  public void write(@ModelAttribute("cri") Criteria cri){}
+  public void write(@ModelAttribute("cri") Criteria cri){ log.info("왜 안타냐?");} 
   
   @PostMapping("write")
-  @SigninCheck
   public String postWrite(Post post, Criteria cri) {
+    int crint = cri.getCategory();
+    Long lcrint = Long.valueOf(crint);
+    post.setCno(lcrint);
     service.write(post);
     return "redirect:list?" + cri.getQs2();
   }
 
   @GetMapping("modify")
   @SigninCheck
-  @MyPost(value = "writer")
+  // @MyPost(value = "writer")
   public void modify(@RequestParam("pno") Long pno, Model model, Criteria cri, @SessionAttribute(name = "member") Member member, String writer){
     // String writer = service.findBy(pno).getWriter();
     // String sessionID = model.getAttribute("id");
@@ -71,8 +72,8 @@ public class PostController {
   }
 
   @PostMapping("modify")
-  @SigninCheck 
-  @MyPost(value = "writer")
+  @SigninCheck @MyPost
+  // @MyPost(value = "writer")
   public String postModify(Post post, Criteria cri){
     service.modify(post);
     // log.info(post);
