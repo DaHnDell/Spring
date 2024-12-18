@@ -33,7 +33,7 @@ public class PostServiceImpl implements PostService{
 		log.info(post);
 		log.info(post.getCno());
 		if(post.getCno() == null)	{
-			post.setCno(2);
+			post.setCno(post.getPno());
 		}
 		log.info(post.getCno());
 		postMapper.insert(post);

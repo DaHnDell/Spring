@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 // import org.springframework.boot.context.properties.bind.ConstructorBinding;
+import org.springframework.format.annotation.DateTimeFormat;
 
 // import lombok.AllArgsConstructor;
 // import lombok.Builder;
@@ -21,28 +22,16 @@ public class Post {
 	private String writer; // 게시글 작성자
 	private String content; // 게시글 내용
 	private Long viewCnt; // 게시글 조회수
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date regDate; // 게시글 등록일
 	private Date updateDate;
-	private Integer cno;
+	private Long cno;
 	private Boolean attachFlag;
 	// @Builder.Default
 	private List<Attach> attachs = new ArrayList<>();
 
 	// @ConstructorBinding
-	public Post(Long pno, String title, String writer, String content, Long viewCnt, Date regDate, Date updateDate,
-	Integer cno, Boolean attachFlag) {
-		super();
-		this.pno = pno;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
-		this.viewCnt = viewCnt;
-		this.regDate = regDate;
-		this.updateDate = updateDate;
-		this.cno = cno;
-		this.attachFlag = attachFlag;
-	}
-	
+
 //	public final Post() {
 //		
 //	}
