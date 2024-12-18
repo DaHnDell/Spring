@@ -1,6 +1,10 @@
 // const replyService =  {};
 const replyService = (function() { 
-    const url = "/member_post/reply";
+    const url = "/reply";
+    $.ajaxSetup({
+        // dataType:"json",
+        contentType:'application/json; charset=utf-8'
+    });
     function write(reply, callback){
         console.log(reply);
         // reply.
