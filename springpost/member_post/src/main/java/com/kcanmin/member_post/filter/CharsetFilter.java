@@ -25,12 +25,10 @@ public class CharsetFilter implements Filter{
 		// 전처리 - before
 		request.setCharacterEncoding("utf-8");
 		// 실제 처리부 - around?
-		chain.doFilter(request, response);
+		// chain.doFilter(request, response);
 		// 안녕하세요? - after
 		// log.info("filter 적용됨");
 		chain.doFilter(request, response);
 	}
-	
-	
 
 }
