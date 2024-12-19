@@ -12,7 +12,6 @@ import com.kcanmin.member_post.aop.MyPost;
 import com.kcanmin.member_post.aop.SigninCheck;
 import com.kcanmin.member_post.dto.Criteria;
 import com.kcanmin.member_post.dto.PageDto;
-import com.kcanmin.member_post.service.MemberService;
 import com.kcanmin.member_post.service.PostService;
 import com.kcanmin.member_post.vo.Member;
 import com.kcanmin.member_post.vo.Post;

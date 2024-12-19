@@ -1,11 +1,8 @@
 package com.kcanmin.member_post;
 
-import static org.mockito.ArgumentMatchers.nullable;
-
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.log4j.Log4j2;
