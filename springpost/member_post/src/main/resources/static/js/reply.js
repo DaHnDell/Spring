@@ -58,7 +58,8 @@ const replyService = (function() {
     function modify(reply, callback){
         const data = JSON.stringify(reply);
         $.ajax(url,{
-            method : "put"
+            method : 'put',
+            data
         }).done(function(data){
             if(callback)
                 callback(data);

@@ -1,32 +1,28 @@
 package com.kcanmin.member_post.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.kcanmin.member_post.aop.SigninCheck;
-import com.kcanmin.member_post.dto.Criteria;
 import com.kcanmin.member_post.dto.ReplyCri;
 import com.kcanmin.member_post.service.ReplyService;
 import com.kcanmin.member_post.vo.Member;
 import com.kcanmin.member_post.vo.Reply;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
@@ -67,22 +63,24 @@ public class ReplyController {
   
 
   @Operation(summary = "reply single select", description = "@PathVariable인 rno 값을 입력 받고 해당 댓글을 json으로 리턴")
-  @GetMapping("view/{rno}")
-  public ResponseEntity<?> view(@PathVariable("rno") Long rno) {
+  @GetMapping("{rno}")
+  public ResponseEntity<?> view(@PathVariable Long rno) {
     service.findBy(rno);
     // log.info(service.findBy(rno));
     return ResponseEntity.ok().body(service.findBy(rno));
   }
 
-  @PostMapping("modify")
-  @SigninCheck
+  @PutMapping
   public ResponseEntity<?> modify(@RequestBody Reply reply) {
-    return ResponseEntity.ok().body(service.modify(reply));
+    log.info("댓글? " + reply);
+    service.modify(reply);
+    return ResponseEntity.ok().body("success");
   }
 
-  @RequestMapping("{rno}")
-  @SigninCheck
-  public ResponseEntity<?> postRemove(@PathVariable Long rno, Criteria cri){
-    return ResponseEntity.ok().body(service.remove(rno));
+  // @RequestMapping("{rno}") // 내일 물어보셈 // 하면 안됨,, Rest와 일반 controller의 차이.
+  @DeleteMapping("{rno}")
+  public ResponseEntity<?> postRemove(@PathVariable Long rno){
+    service.remove(rno);
+    return ResponseEntity.ok().body("success");
   }
 }
