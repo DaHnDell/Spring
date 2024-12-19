@@ -1,5 +1,6 @@
 package com.kcanmin.member_post.controller;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import com.kcanmin.member_post.service.MemberService;
 import com.kcanmin.member_post.vo.Member;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemberController {
   // private MemberService service
   InternalResourceViewResolver resolver;
+  private HttpServletRequest req;
 
   @GetMapping("mv")
   public ModelAndView mvR(ModelAndView mv){
@@ -65,13 +68,16 @@ public class MemberController {
   //     return "member/signin";
   // }
   
+  // @Nullable
   @PostMapping("signin")
-  public String postSignIn(Member member, @RequestParam(required = false, value = "remember-id") String remember, HttpSession session, RedirectAttributes rttr, HttpServletResponse resp) { // 리다이렉트 문은 rttr을 많이 사용하긴 함.
+  public String postSignIn(Member member, @RequestParam(required = false, value = "remember-id") String remember, 
+  HttpSession session, RedirectAttributes rttr, HttpServletResponse resp, @RequestParam("url") @Nullable String url) { // 리다이렉트 문은 rttr을 많이 사용하긴 함.
+    // String returnUrl = req.getParameter("url");
+    log.info(url + " 리턴 유알엘 왜 안타냐아아아");
     // 옵셔널 = null + 기본값
     // required = 기본값, value = 탐색할 value 가 있는 대상의 name
     // @Nullable 널 가능 여부 추가
     // get 방식의 메서드를 활용할 경우에 post 와 리다이렉션(새로고침 등) 의 문제가 발생하지 않음.
-
     log.info(remember);  
     if(memberService.login(member.getId(), member.getPw())){
       // 성공
@@ -87,7 +93,7 @@ public class MemberController {
       resp.addCookie(cookie);
 
       // return index
-      return "redirect:/";
+      return url == null ? "redirect:/" : "redirect:" + url;
     }else{
       // 실패
       // return "redirect:/member/signin";
@@ -95,7 +101,8 @@ public class MemberController {
       // model.addAttribute("msg", "failed"); // 모델의 경우 일반적인 포워딩을 위함. 
       // rttr.addAttribute("msg", "failed"); // rttr의 경우 모델이 해야 하는 일과 정확히 같은 규칙의 일을 수행한다. 
       rttr.addFlashAttribute("msg", "failed"); // 반짝 속성!?! // 실제 1회성의 세션 어트리뷰트와 비슷,,,,
-      return "redirect:signin";
+      return url == null ? "redirect:/" : "redirect:" + url;
+      // return "redirect:signin";
     }
 
     // 세션, 쿠키의 정보를 활용하여 사용자 편의성을 증진시킬 수 있는 인터페이스가 스프링에 구현되어 있음.

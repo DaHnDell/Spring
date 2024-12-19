@@ -29,20 +29,20 @@ public class PostServiceImpl implements PostService{
 	@Override
 	public int write(Post post){
 		// Optional<Integer> nullCno = OptionalInt(post.getCno());
+		// log.info(post);
+		// log.info(post.getCno());
+		// if(post.getCno() == null)	{
+		// 	post.setCno(post.getPno());
+		// }	
+		// log.info(post.getCno());
 
-		log.info(post);
-		log.info(post.getCno());
-		if(post.getCno() == null)	{
-			post.setCno(post.getPno());
-		}
-		log.info(post.getCno());
 		postMapper.insert(post);
 		post.getAttachs().forEach(a->{
 			a.setPno(post.getPno());
 			attachMapper.insert(a);
 		});
 			return 0;
-		}
+	}
 	
 	@Override
 	public int modify(Post post) {

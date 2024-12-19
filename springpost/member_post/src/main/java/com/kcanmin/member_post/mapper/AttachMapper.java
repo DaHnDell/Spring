@@ -19,4 +19,7 @@ public interface AttachMapper {
 	
 	@Delete("delete from tbl_attach where pno = #{pno}")
 	int delete(Long pno);
+
+	@Select("select * from tbl_attach where path = #{path}")
+	List<Attach> selectListByPath(String path);
 }
