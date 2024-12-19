@@ -1,9 +1,12 @@
-package com.kcanmin.member_post.aop;
+package com.kcanmin.member_post.aop.aspect;
 
 // import java.io.IOException;
 // import java.net.URLEncoder;
 import java.util.Arrays;
 
+import com.kcanmin.member_post.Exception.NotMyPostException;
+import com.kcanmin.member_post.Exception.UnsignedAuthException;
+ 
 // import org.aspectj.lang.JoinPoint;
 // // import org.aspectj.lang.ProceedingJoinPoint;
 // import org.aspectj.lang.annotation.Aspect;
@@ -12,6 +15,7 @@ import java.util.Arrays;
 
 import com.kcanmin.member_post.vo.Member;
 // import com.kcanmin.member_post.vo.Post;
+import com.kcanmin.member_post.vo.Post;
 
 // import jakarta.servlet.http.HttpServletRequest;
 // import jakarta.servlet.http.HttpServletResponse;
@@ -44,15 +48,24 @@ public class AuthAspect {
   private HttpServletRequest req;
 
    @Before("@annotation(com.kcanmin.member_post.aop.MyPost)")
-  public void myPost(JoinPoint joinPoint, MyPost myPost){
+  public void myPost(JoinPoint joinPoint) throws IOException{
+    log.info("마이포스트 어노테이션 시작. 삭제 및 수정여부?!?!?");
     Object o = session.getAttribute("member");
+    if(o == null){
+      throw new UnsignedAuthException("본인 게시글 아님"); 
+    }
     String id = ((Member) o).getId();
 
     Object[] args = joinPoint.getArgs();
-    String writeParam = myPost.value();
+    for(Object obj : args){
+      if(obj instanceof Post && !((Post)obj).getWriter().equals(obj)){
+        throw new NotMyPostException("본인 게시글 아님");    
+      }
+    }
+    // String writeParam = myPost.value();
     log.info(Arrays.toString(args));
     log.info(id);
-    log.info(writeParam);
+    // log.info(writeParam);
 
     // if(o == null || ((Member)o).getId().equals(post.getWriter())) {
     //   throw new RuntimeException("본인 게시글 아님");
@@ -74,6 +87,7 @@ public class AuthAspect {
     if (session.getAttribute("member") == null ){
       String url = "/member/signin?url=" + URLEncoder.encode(req.getRequestURI() + "?" + req.getQueryString(), "utf-8");
       resp.sendRedirect("/msg?msg=" + URLEncoder.encode("로그인이 필요한 페이지 입니다.", "utf-8")+ "&url="+url);
+
     }
     // else{
     //   resp.sendRedirect(req.getRequestURL() + req.getQueryString());
