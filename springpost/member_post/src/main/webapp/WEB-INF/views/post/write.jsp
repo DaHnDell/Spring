@@ -23,7 +23,7 @@
 	                <textarea rows="15" type="text" class="form-control" id="title" placeholder="input content" name="content"></textarea>
 	                
 	                <label for="writer" class="form-label mt-3"><i class="fa-solid fa-user-pen text-primary"></i><b> Writer </b></label>
-	                <input type="text" class="form-control" id="writer" placeholder="writer" name="writer" value="${member.id}" readonly>
+	                <input type="text" class="form-control" id="writer" placeholder="writer" name="writer" value="${member.id}">
 
 	                <label class="form-label mt-3"><i class="fa-solid fa-paperclip text-primary"></i><b> Attach </b></label>
 	                <label for="attach" class="form-label mt-3"><span class="btn btn-outline-dark btn-warning mx-4"> 파일 첨부 </span></label>
@@ -72,10 +72,10 @@
 				let strHidden = '';
 				for(let i in data){
 					str += `<li class = "list-group-item">\${data[i].origin}</li>`;
-					strHidden += `<input type="hidden" name="uuid" value="\${data[i].uuid}">`;
-					strHidden += `<input type="hidden" name="origin" value="\${data[i].origin}">`;
-					strHidden += `<input type="hidden" name="image" value="\${data[i].image}">`;
-					strHidden += `<input type="hidden" name="path" value="\${data[i].path}">`;
+					strHidden += `<input type="hidden" name="attachs[\${i}].uuid" value="\${data[i].uuid}">`;
+					strHidden += `<input type="hidden" name="attachs[\${i}].origin" value="\${data[i].origin}">`;
+					strHidden += `<input type="hidden" name="attachs[\${i}].image" value="\${data[i].image}">`;
+					strHidden += `<input type="hidden" name="attachs[\${i}].path" value="\${data[i].path}">`;
 				}
 				$(".attach-result").html(str);
 				$(".uploaded-input").html(strHidden);
