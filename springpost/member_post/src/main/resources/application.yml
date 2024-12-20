@@ -11,6 +11,13 @@ spring:
       additional-exclude: static/**, templates/**
     livereload:
       enabled: true
+  servlet:
+    multipart:
+      max-request-size:
+        50MB
+      file-size-threshold:
+        10MB
+      location: c:/upload
   application:
     name: "member_post"
   datasource:
@@ -39,3 +46,4 @@ springdoc:
 
 upload:
   path: c:/upload
+
