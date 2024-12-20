@@ -10,5 +10,14 @@
 </head>
 <body>
   <h1>hello Mustache!!</h1>
+  <form method="post">
+    <input type="text" name="task" placeholder="write your task here">
+    <button>add</button>
+  </form>
+  <ul>
+    {{#todos}}
+    <li>{{task}}</li>
+    {{/todos}}
+  </ul>
 </body>
 </html>

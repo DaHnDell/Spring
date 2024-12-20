@@ -5,6 +5,7 @@
 -- 고집 부리지 않기~
 -- `<input type="hidden" name="attachs[\${i}].uuid" value="\${data[i].uuid}">`
 -- js 는 컨트롤러가 아닙니다.. 아시겠어요? name 값에 지정해주는게 없으면 당연히?! 메소드에서 웹바인딩을 못한다..
+-- boolean 래퍼 클래스로 롬복 등록할 경우에는 getter가 is 가 아닌 get 이 된다. 이를 방지하고 is를 사용하려면 래퍼클래스인 Boolean 말고 원시타입 boolean 을 사용하자.
 
 tomcat-logs-
 세션은 생성 시에 고유 id가 존재한다.
@@ -145,6 +146,7 @@ ex = Execution(public Integer com.edu.aop."."(*));
 
 
 @Test 코드는 무조건 퍼블릭으로 할 것.
+테스트 코드 옆의 화살표로 직접 하나씩 실행하는 것은 단일 테스트라고 함.
 
 transaction - > propagation, isolation 
 트랜잭션은 일반적으로 한번에 실행되어야 하며 일괄 작업 중 다른 일을 수행하지 않게 하기 위해 사용.
@@ -307,8 +309,6 @@ Optional - isPresent(값 유무), orElse(값 없으면 . 지정된 값 사용), 
 리플렉션을 잘 한다는 것은 스프링을 잘 안다는 것.
 
 
-쿼리스트링을 
-
 모델 어트리뷰트에 넣으면서 스프링 컨트롤러가 디코딩을 해 줌. 
 인코딩 이후 일반적으로 디코딩을 하는 것이 훨씬 더 이득임.
 
@@ -324,3 +324,42 @@ Optional - isPresent(값 유무), orElse(값 없으면 . 지정된 값 사용), 
 파일 업로드, 다운로드 및 변환 과정 숙지할 것.
 
 어차피 UUID에서 유일성은 보장받앗음.
+
+
+스프링 부트와 스프링 버전을 혼동하면 안 됨
+스프링 버전 보는 법 = 외부 자바 라이브러리에서 스프링 코어 버전 확인하기.
+
+spring expression = value = ${} 등과 같이 스프링 어노테이션 내부에 사용하게 되는 어노테이션.
+spring transaction = 
+
+
+Quartz
+Job = 해야 할 일
+Scehdule = 일정 (실행 시각) 스케줄이 적용된 메서드는 파라미터 X 
+(Cron) Trigger = 일정의 발동 조건 / cron = 초 분 시 일 월 요일 년도
+
+0 0 5 * * 5 
+
+Collection / addAll(합집합) retainAll(교집합) removeAll(차집합)
+
+new 연산자를 사용해서 새로운 참조자료형 을 만들어야 
+
+
+Stream 시리즈
+대표적인 최종 연산 forEach(consumer)=내부의 값을 각각 itterate 하며 참조된 메서드를 실행한다, count=스트림의 갯수를 몇개인지 세서 반환해줌, Collect = Collectors.tolist() 리스트나 배열을 반환해 준다, immutable이며 
+중간 연산자는 Stream을 무조건 반환한다. 
+filter(predicate), map(function), peek(consumer), reduce(차원 줄이기)
+
+CI / CD 개념 
+CI/CD는 지속적 통합(Continuous Integration) 및 지속적 제공/배포(Continuous Delivery/Deployment)를 의미하며, 소프트웨어 개발 라이프사이클을 간소화하고 가속화하는 것을 목표로 합니다.
+지속적 통합(CI)은 코드 변경 사항을 공유 소스 코드 리포지토리에 자동으로 자주 통합하는 사례를 나타냅니다. 지속적 제공 및/또는 배포(CD)
+
+
+
+---------------------------------
+todo
+
+
+
+h2 - 매번 주소가 변경되지만 추후에 작업에 따라 고정 가능. 따라서 간단한 형태의 테스트나, 흐름을 제어하는 용도로 사용된다. 
+예를 들어 꼭 로컬이 아니더라도, 서버 내부에서 메모리를 할당하여 사용한다. 그래서 휘발성이라는 것!!
