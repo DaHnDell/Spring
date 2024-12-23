@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <ul>
+    <!--/*<li th:each="dto, state : ${list}" th:if="${dto.sno % 5 == 0}">
+       [[${state.count}]] --- [[${state.index}]] --- [[${dto}]]
+    </li>*/-->
+    <!--/*<li th:each="dto, state : ${list}">
+      <span th:if="${dto.sno % 5 == 0}" th:text="${'----------'+dto.sno}"></span>
+      <span th:if="${dto.sno % 5 != 0}" th:text="${dto.first}"></span>
+    </li>*/-->
+    <!--/*<li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}">
+    </li>*/-->
+    <th:block th:each="dto : ${list}">
+      <li th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li>
+      <li th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li>
+    </th:block>
+  </ul>  
+</body>
+</html>
