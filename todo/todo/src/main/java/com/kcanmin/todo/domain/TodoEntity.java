@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "todo") // jpql 편하게 쓰려고.
 @Table(name = "tbl_todo")
 @Getter
 @Setter

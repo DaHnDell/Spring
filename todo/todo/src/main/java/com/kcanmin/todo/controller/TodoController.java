@@ -1,6 +1,7 @@
 package com.kcanmin.todo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -46,10 +47,11 @@ public class TodoController {
       return "redirect:/todos";
   }
   
-
-  // @GetMapping("list")
-  // public String getMethodName(@RequestParam String param) {
-  //     return new String();
-  // }
-  
+  // @Transactional
+  @RequestMapping("todos/modify")
+  public String modify(Long id) {
+      log.info(id);
+      toDoService.modify(id);
+      return "redirect:/todos";
+  }
 }
