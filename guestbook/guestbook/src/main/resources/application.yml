@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: guestbook
+  datasource:
+    url: jdbc:mariadb://np.kcanmin.com:3306/guestbook
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: guestbook
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths:
+      - src/main/java
+      - src/main/resources
+      - src/main/resources
+      - templates/**
+server:
+  servlet:
+    encoding:
+      force: true
