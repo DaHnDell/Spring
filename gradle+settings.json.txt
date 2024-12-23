@@ -1,0 +1,88 @@
+***********************************************************************************************************settings.json
+
+{
+  "java.debug.settings.hotCodeReplace": "auto",
+  "java.debug.settings.forceBuildBeforeLaunch": true,
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "interactive"
+}
+
+
+
+
+************************************************************************************************************build.gradle
+
+// spring tester junit
+testImplementation 'org.springframework.boot:spring-boot-starter-test'
+testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+// lombok test impl
+testImplementation 'org.projectlombok:lombok'
+testAnnotationProcessor 'org.projectlombok:lombok'
+
+testImplementation 'org.springframework.boot:spring-boot-starter-test'
+testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+// log4j2 impl
+implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+// springdoc mvc swagger
+implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
+
+
+// springboot logger
+configurations { 
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
+
+
+************************************************************************************************************log4j2.xml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%-5level]} %d{yyyy-MM-dd HH:mm:ss.SSS} %c{3} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+        <Logger level="warn" name="jdbc.audit" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger level="warn" name="jdbc.resultset" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger level="warn" name="jdbc.connection" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger level="info" name="com.kcanmin" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+    </Loggers>
+</Configuration>
+
+
+***********************************************************************************************************application.properties
+
+
+spring.application.name=todo
+spring.devtools.restart.enabled=true
+spring.devtools.restart.additional-paths=[src/main/java/resources]
+spring.devtools.livereload.enabled=true
+
+spring.datasource.url=jdbc:log4jdbc:h2:mem:todo
+spring.datasource.driver-class-name=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+
+spring.mustache.charset=utf-8
+server.servlet.encoding.force=true
