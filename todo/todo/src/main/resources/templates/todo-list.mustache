@@ -11,13 +11,15 @@
 <body>
   <h1>hello Mustache!!</h1>
   <form method="post">
-    <input type="text" name="task" placeholder="write your task here">
+    <input type="text" name="task" placeholder="write your task here / 할 일 입력">
     <button>add</button>
   </form>
-  <ul>
-    {{#todos}}
-    <li>{{task}}</li>
-    {{/todos}}
-  </ul>
+  <form action="todos/remove">
+    <ul>
+      {{#todos}}
+      <li>{{task}}<button name="id" value="{{id}}">삭제</button> {{#done}}달성{{/done}} {{^done}}<button name="id" value="{{id}}">미달성</button>{{/done}}</li>
+      {{/todos}}
+    </ul>
+  </form>
 </body>
 </html>

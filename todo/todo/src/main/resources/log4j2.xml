@@ -12,6 +12,9 @@
         <Logger level="warn" name="jdbc.audit" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
+        <Logger level="warn" name="jdbc.resultset" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
         <Logger level="warn" name="jdbc.connection" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>

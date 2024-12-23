@@ -6,6 +6,7 @@
 -- `<input type="hidden" name="attachs[\${i}].uuid" value="\${data[i].uuid}">`
 -- js 는 컨트롤러가 아닙니다.. 아시겠어요? name 값에 지정해주는게 없으면 당연히?! 메소드에서 웹바인딩을 못한다..
 -- boolean 래퍼 클래스로 롬복 등록할 경우에는 getter가 is 가 아닌 get 이 된다. 이를 방지하고 is를 사용하려면 래퍼클래스인 Boolean 말고 원시타입 boolean 을 사용하자.
+-- 구현 시 무조건 로그 찍어라..
 
 tomcat-logs-
 세션은 생성 시에 고유 id가 존재한다.
@@ -341,7 +342,7 @@ Scehdule = 일정 (실행 시각) 스케줄이 적용된 메서드는 파라미�
 0 0 5 * * 5 
 
 Collection / addAll(합집합) retainAll(교집합) removeAll(차집합)
-
+		
 new 연산자를 사용해서 새로운 참조자료형 을 만들어야 
 
 
@@ -363,3 +364,63 @@ todo
 
 h2 - 매번 주소가 변경되지만 추후에 작업에 따라 고정 가능. 따라서 간단한 형태의 테스트나, 흐름을 제어하는 용도로 사용된다. 
 예를 들어 꼭 로컬이 아니더라도, 서버 내부에서 메모리를 할당하여 사용한다. 그래서 휘발성이라는 것!!
+
+배포를 하게 될 경우에는 jpa에서 spring.jpa.hibernate.ddl-auto = none으로 하게 된다.
+ddd = 도메인 주도 개발
+
+기존의 방식은 도메인 계층에서 JPA를 사용해 엔티티와 JPARepositoy를 만들어서 사용했다.
+그래서 자연스럽게 데이터베이스 접근 기술이 도메인 서비스에 녹아들어 있었다.
+
+ddd의 장점은 
+언어의 변경이 더 자유로워진다. 
+
+
+결과적으로 봤을 때 엔티티가 테이블이다. 
+어노테이션 간의 관계 
+
+컨트롤러에 관한 설정은 전역 설정에서 잡아줘야 함.
+
+
+
+
+
+
+
+
+----------------------mustache 사용법
+머스태치의 html setencoding 자체는 문제가 없다. 따라서 컨트롤러 전역 설정을 건드려야 함.
+
+각각의 버튼에 네임과 밸류 값을 따로 따로 줘야 함. 네임과 밸류 값이 다를 경우 url에 전송되는 형태가 서로 다르게 전송됨.
+심지어 같은 폼 태그 내부에 있다고 해도, 이에 따른 작업들이 이어지는 것
+
+# 기호가 있다는 건 객체 형식으로 가져온다는 뜻. 이터레이블(반복 가능한 객체) 속성이 있으면 알아서 순환해줌.
+아니면 그냥 하나만 해 줌.
+
+----------------------JPA 사용법
+@OneToMany
+@ManyToOne
+@OneToOne
+
+우리가 사용하는 관계형 DB에서는 애초에 다대다 관계가 어색하기 때문에 다대다 어노테이션은 잘 지원하지 않음.
+
+jpaRepository method
+@Pageable
+@Query
+
+ThymeLeaf(스프링과 가장 닮아 있음. EL도 사용 가능하고, 복잡한 계산 구문도 활용 가능)
+
+-SPA(Single Page Application) : 리액트 안쓰고 사용하는 간단한 예제를 통해 학습 예정 
+
+-Servlet/JSP 샘플 코드들을 초기 단계부터 구현을 할 예정. 
+Spring Boot - Thymeleaf로 구현. 특히 화면쪽 비동기(MaterialUI?BootStrap template) - JPA(querydsl) 로 할 예정
+
+
+
+-----------------------
+ReactJS
+JSX, Component, state, props, hooks, router, rdeux
+
+Spring Security + 토큰 방식 
+Authentication, JWT, OAuth2
+
+
