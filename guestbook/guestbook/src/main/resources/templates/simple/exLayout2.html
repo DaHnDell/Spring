@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <h1>FragmentTest</h1>  
+  <th:block th:replace="~{/fragments/fragment2 :: target(~{this :: #ulFirst}, ~{this :: #ulSecond} )}">
+    <ul id="ulFirst">
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+    </ul>
+    <ul id="ulSecond">
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+    </ul>
+  </th:block>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <th:block th:fragment="setContent(content)">
+    <head>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <title>Page Title</title>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+      <style>
+        * {margin:0px; padding: 0px;}
+        .header {width: 100vw; height: 20vh; background-color: aqua;}
+        .content {width: 100vw; height: 20vh; background-color: lightblue;}
+        .footer {width: 100vw; height: 10vh; background-color: green;}
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <h1>HEADER</h1>
+      </div>
+      <div class="content">
+        <th:block th:replace="${content}">
+        </th:block>
+        <h1>CONTENT</h1>
+      </div>
+      <div class="footer">
+        <h1>FOOTER</h1>
+      </div>
+    </body>
+</th:block>
+</html>

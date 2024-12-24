@@ -1,15 +1,11 @@
 package com.kcanmin.guestbook.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.time.LocalDateTime;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kcanmin.guestbook.domain.SimpleDto;
@@ -53,4 +49,10 @@ public class SimpleController {
     log.info("helllo");
   }
   
+  @GetMapping({"exLayout1", "exLayout2", "exTemplate", "exSidebar"})
+  public void exLayout1() {
+      log.info("exLayout1");
+  }
+  
+
 }

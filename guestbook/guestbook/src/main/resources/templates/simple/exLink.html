@@ -10,7 +10,9 @@
   <h1>골뱅이 쓰면 cp 루트컨택스트를 지원해 줌</h1>
   <ul>
     <li th:each="dto : ${list}">
-      <a th:href="@{/simple/exView((sno=${dto.sno}),(first=${dto.first}))}">[[${dto}]]</a>
+      <a th:href="@{/sample/exView(sno=${dto.sno},first=${dto.first + dto.last})}">
+        [[${#numbers.formatInteger(dto.sno, 5)}]] --- [[${#temporals.format(dto.regTime, 'yyyy/MM/dd HH:mm:ss.SSS')}]]
+      </a>
     </li>
   </ul>  
 </body>

@@ -532,12 +532,46 @@ countBy : SQL문의 count와 동일한 기능을 수행, 결과값의 개수를 
 
 [[${dto}]] = 인라인 표현식
 
-th = thymeleaf 관련 메서드 호출자 느낌. jstl의 c: 태그 느낌. 
+th = thymeleaf 관련 메서드 호출자. jstl의 c: 태그 느낌. 네임스페이스.
 th if, each, unless 등 다양한 속성 존재.
 <!--/* 주석 방식 */-->
+
+타임리프는 날짜 관련, 숫자 관련 추가적인 선언이 필요하지않다.
+그냥 사용하면 됨.
 
 
 if 내부에는 식만 들어가야 함. 조건 판별식. 
 text 내부에는 표현하고자 하는 컨텍스트 자체가 포함되어도 됨. 즉 조건 + 텍스트임.
 
 
+thymeleaf 레이아웃
+jsp include
+파라미터 전달 
+
+th: insert
+th: replace
+
+
+
+fragment include 
+
+페이지 이동 방식 = 리디렉션, 포워드 
+
+
+
+템플릿 엔진의 특징은 가벼움이다. 즉 꼭 톰캣 위에서 구동하지 않아도 됨.
+
+
+요구사항 정의서 / 화면설계서 => 고객사와 소통하기 위함.
+
+request 정의서(url)(흐름정의서)/컨트롤러명세서
+
+page처리 
+
+작성, 수정, 삭제 시 리디렉션 필요
+
+리디렉션 = post, 뷰 = get.
+
+mybatis = mapper.
+Jpa = repository.
+Java persistence Application / 
