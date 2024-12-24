@@ -1,6 +1,7 @@
 package com.kcanmin.guestbook.domain.dto;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.cglib.core.Local;
 
@@ -28,12 +29,16 @@ public class GuestbookViewDTO {
   private LocalDateTime modDate;
 
   public GuestbookViewDTO(GuestbookEntitiy entitiy){
-    gno = entitiy.getGno();
-    title = entitiy.getTitle();
-    content = entitiy.getContent();
-    writer = entitiy.getWriter();
-    regDate = entitiy.getRegDate();
-    modDate = entitiy.getModDate();
+    // if(!opt.isPresent()){
+    //   return;
+    // }
+    // GuestbookEntitiy entitiy = opt.get();
+    this.gno = entitiy.getGno();
+    this.title = entitiy.getTitle();
+    this.content = entitiy.getContent();
+    this.writer = entitiy.getWriter();
+    this.regDate = entitiy.getRegDate();
+    this.modDate = entitiy.getModDate();
   }
 
   // public GuestbookEntitiy toEntitiy(){

@@ -1,20 +1,21 @@
 package com.kcanmin.guestbook.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
+import org.springframework.stereotype.Service;
 import com.kcanmin.guestbook.domain.dto.GuestbookListDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookModifyDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookViewDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookWriteDTO;
+import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
 import com.kcanmin.guestbook.repository.GuestbookRepository;
-
 import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
 public class GuestbookServiceImpl implements GuestbookService{
-  private GuestbookRepository repository;
+  private GuestbookRepository repository; // 리포지토리 가져와~
 
   public List<GuestbookListDTO> list(){
     return repository.findAll().stream().map(GuestbookListDTO::new).toList();
@@ -22,8 +23,15 @@ public class GuestbookServiceImpl implements GuestbookService{
 
   @Override
   public GuestbookViewDTO get(Long gno) {
+    Optional<GuestbookEntitiy> opt = repository.findById(gno);
+    if(!opt.isPresent()){
+      return null;
+    }
+    return new GuestbookViewDTO(opt.get());
     // 하나 조회해서 반환하는것도 어렵네,,
     // return repository.findById(gno).get().;
+    // return new GuestbookViewDTO(repository.findById(gno).) 
+    // 가져오는 애가 옵셔널이면 처음부터 생성자를 optional로 하면 된다
   }
 
   @Override
@@ -31,13 +39,15 @@ public class GuestbookServiceImpl implements GuestbookService{
     repository.save(dto.toEntitiy());
   };
 
-  // public void remove(Long gno){
-  //   repository.deleteById(gno);
-  // }
-
   @Override
   public void modify(GuestbookModifyDTO dto){
     // repository.
+    repository.save(dto.toEntitiy());
+  }
+
+  @Override
+  public void remove(Long gno){
+    repository.deleteById(gno);
   }
 
 

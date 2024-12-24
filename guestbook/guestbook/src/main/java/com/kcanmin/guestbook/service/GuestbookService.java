@@ -10,7 +10,7 @@ import com.kcanmin.guestbook.domain.dto.GuestbookWriteDTO;
 public interface GuestbookService {
   void write(GuestbookWriteDTO dto);
   void modify(GuestbookModifyDTO dto);
-  // void remove(GuestbookRemoveDTO dto);
+  void remove(Long gno);
   List<GuestbookListDTO> list();
   GuestbookViewDTO get(Long gno);
 }
