@@ -3,11 +3,13 @@ package com.kcanmin.guestbook.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.kcanmin.guestbook.domain.dto.GuestbookDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookListDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookModifyDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookViewDTO;
-import com.kcanmin.guestbook.domain.dto.GuestbookWriteDTO;
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
 import com.kcanmin.guestbook.repository.GuestbookRepository;
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +17,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 public class GuestbookServiceImpl implements GuestbookService{
+  @Autowired
   private GuestbookRepository repository; // 리포지토리 가져와~
 
   public List<GuestbookListDTO> list(){
@@ -35,9 +38,14 @@ public class GuestbookServiceImpl implements GuestbookService{
   }
 
   @Override
-  public void write(GuestbookWriteDTO dto){
-    repository.save(dto.toEntitiy());
-  };
+  public Long write(GuestbookDTO dto){
+    GuestbookEntitiy entitiy = toEntitiy(dto);
+    log.info(entitiy);
+    repository.save(entitiy);
+    log.info(entitiy);
+    return entitiy.getGno();
+    // 작성하고 나서 작성한 글의 글 번호를 리턴할 예정.
+  }
 
   @Override
   public void modify(GuestbookModifyDTO dto){
@@ -49,8 +57,6 @@ public class GuestbookServiceImpl implements GuestbookService{
   public void remove(Long gno){
     repository.deleteById(gno);
   }
-
-
 
   // @Transactional
   // public void modify(Long id){
