@@ -13,6 +13,14 @@
 -- 객체 저장 시 save 안쪽에 toEntity를 왜때리냐~~ 어차피 DTO 통일되어 있어서 엔티티 자체를 저장해주면 된다....
 -- 테스트 코드에서는 무조 건 AutoWired를 사용하자..
 -- DTO는 주입 대상이 아니다. 그 순간순간 내가 직접 호출해야 한다.
+///////
+
+-- 핸들러매핑이 뭔지 알아볼 것
+
+
+-- 체이닝에서(stream) map이 뭔지 다시 한번 알아볼 것
+-- RESTCONTROLLER, RESPONSEBODY => internalResourceViewResolver 대신 일반 객체로 받을 때 사용..
+
 
 tomcat-logs-
 세션은 생성 시에 고유 id가 존재한다.
