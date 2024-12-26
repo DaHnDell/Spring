@@ -7,13 +7,17 @@ import com.kcanmin.guestbook.domain.dto.GuestbookListDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookModifyDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookViewDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookWriteDTO;
+import com.kcanmin.guestbook.domain.dto.PageRequestDTO;
+import com.kcanmin.guestbook.domain.dto.PageResultDTO;
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
 
 public interface GuestbookService { // 스태틱 키워드를 통해 인터페이스에도 구상 가능 + default 키워드로도 구상이 가능하다.
   Long write(GuestbookDTO dto);
+  PageResultDTO<GuestbookDTO, GuestbookEntitiy> list(PageRequestDTO dto);
   void modify(GuestbookModifyDTO dto);
   void remove(Long gno);
   List<GuestbookListDTO> list();
+  
   GuestbookViewDTO get(Long gno);
 
   default GuestbookEntitiy toEntitiy(GuestbookDTO dto){
@@ -34,6 +38,8 @@ public interface GuestbookService { // 스태틱 키워드를 통해 인터페�
       .title(entitiy.getTitle())
       .content(entitiy.getContent())
       .writer(entitiy.getWriter())
+      .regDate(entitiy.getRegDate())
+      .modDate(entitiy.getModDate())
     .build();
   }
 }

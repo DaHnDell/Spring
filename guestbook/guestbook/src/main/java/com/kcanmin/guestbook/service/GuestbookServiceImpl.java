@@ -2,14 +2,21 @@ package com.kcanmin.guestbook.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.kcanmin.guestbook.domain.dto.GuestbookDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookListDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookModifyDTO;
 import com.kcanmin.guestbook.domain.dto.GuestbookViewDTO;
+import com.kcanmin.guestbook.domain.dto.PageRequestDTO;
+import com.kcanmin.guestbook.domain.dto.PageResultDTO;
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
 import com.kcanmin.guestbook.repository.GuestbookRepository;
 import lombok.extern.log4j.Log4j2;
@@ -58,6 +65,17 @@ public class GuestbookServiceImpl implements GuestbookService{
     repository.deleteById(gno);
   }
 
+  @Override
+  public PageResultDTO<GuestbookDTO, GuestbookEntitiy> list(PageRequestDTO dto) {
+    Pageable pageable = dto.getPageable(Sort.by(Direction.DESC, "gno"));
+    Page<GuestbookEntitiy> page = repository.findAll(pageable);
+    Function<GuestbookEntitiy, GuestbookDTO> function = e-> toDTO(e);
+    PageResultDTO<GuestbookDTO, GuestbookEntitiy> resultDTO = new PageResultDTO<>(page, function);
+    return resultDTO;
+  }
+
+
+  
   // @Transactional
   // public void modify(Long id){
 	// 	Optional<GuestbookEntitiy> gbe = repository.findById(id);
