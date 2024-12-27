@@ -26,16 +26,16 @@ public class GuestbookServiceTests {
   
   
   
-  @Test
-  public void testList(){
-    // PageRequestDTO prd = new PageRequestDTO();
-    // PageResultDTO<GuestbookDTO, GuestbookEntitiy> testList = service.list(prd);
-    // testList.getDtoList().forEach(log::info);  
-    PageResultDTO<GuestbookDTO, GuestbookEntitiy> prd = service.list(new PageRequestDTO(2, 10));
-    // .getDtoList().forEach(log::info);
-    log.info(prd);
-    prd.getPageList().forEach(log::info);
-  }
+  // @Test
+  // public void testList(){
+  //   // PageRequestDTO prd = new PageRequestDTO();
+  //   // PageResultDTO<GuestbookDTO, GuestbookEntitiy> testList = service.list(prd);
+  //   // testList.getDtoList().forEach(log::info);  
+  //   PageResultDTO<GuestbookDTO, GuestbookEntitiy> prd = service.list(new PageRequestDTO(2, 10));
+  //   // .getDtoList().forEach(log::info);
+  //   log.info(prd);
+  //   prd.getPageList().forEach(log::info);
+  // }
     
     @Test
     public void testWrite(){

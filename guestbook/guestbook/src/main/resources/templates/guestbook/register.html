@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+  <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+      <h1>Guest Book Write</h1>
+      
+      <form method="post">
+
+        <div class="mb-3 mt-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+        </div>
+
+        <div class="mb-3">
+          <label for="content" >content</label>
+          <textarea class="form-control" rows="5" id="content" placeholder="Enter content" name="content"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="writer">writer</label>
+          <input type="text" id = "writer" name="writer" placeholder="Enter Writer" class="form-control">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      
+      </form>
+
+    </th:block>
+  </th:block>
+</html>

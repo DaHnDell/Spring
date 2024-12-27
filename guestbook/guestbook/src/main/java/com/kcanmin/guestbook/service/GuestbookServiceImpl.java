@@ -18,7 +18,11 @@ import com.kcanmin.guestbook.domain.dto.GuestbookViewDTO;
 import com.kcanmin.guestbook.domain.dto.PageRequestDTO;
 import com.kcanmin.guestbook.domain.dto.PageResultDTO;
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
+import com.kcanmin.guestbook.domain.entity.QGuestbookEntitiy;
 import com.kcanmin.guestbook.repository.GuestbookRepository;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
+
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -55,9 +59,11 @@ public class GuestbookServiceImpl implements GuestbookService{
   }
 
   @Override
-  public void modify(GuestbookModifyDTO dto){
+  public void modify(GuestbookDTO dto){
     // repository.
-    repository.save(dto.toEntitiy());
+    GuestbookEntitiy entitiy = toEntitiy(dto);
+    log.info(entitiy);
+    repository.save(entitiy);
   }
 
   @Override
@@ -74,6 +80,39 @@ public class GuestbookServiceImpl implements GuestbookService{
     return resultDTO;
   }
 
+  @Override
+  public GuestbookDTO read(Long gno) {
+    Optional<GuestbookEntitiy> opt = repository.findById(gno);
+    return opt.isPresent() ? toDTO(opt.get()) : null;
+  }
+
+
+  private BooleanBuilder getSearch(PageRequestDTO requestDTO){
+    String type = requestDTO.getType();
+    BooleanBuilder booleanBuilder = new BooleanBuilder();
+    QGuestbookEntitiy qGuestbookEntitiy = QGuestbookEntitiy.guestbookEntitiy;
+    BooleanExpression expression = qGuestbookEntitiy.gno.gt(0L);
+    booleanBuilder.and(expression);
+    if(type == null || type.trim().isEmpty()){
+      return booleanBuilder;
+    }
+    BooleanBuilder conditionaBooleanBuilder = new BooleanBuilder();
+    String keyword = requestDTO.getKeyword();
+    if(type.contains("T")){
+      conditionaBooleanBuilder.or(qGuestbookEntitiy.title.contains(keyword));
+    }
+    if(type.contains("C")){
+      conditionaBooleanBuilder.or(qGuestbookEntitiy.title.contains(keyword));
+    }
+    if(type.contains("W")){
+      conditionaBooleanBuilder.or(qGuestbookEntitiy.title.contains(keyword));
+    }
+    booleanBuilder.and(conditionaBooleanBuilder);
+    return booleanBuilder;
+  }
+
+
+  
 
   
   // @Transactional
