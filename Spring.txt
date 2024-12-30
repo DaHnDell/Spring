@@ -618,3 +618,5 @@ Java persistence Application /
 thymeleaf form 관련 메서드 찾아볼 것
 
 
+검색 이후에 주소를 이용해서 그 주소의 이전 접속 정보를 가져와야 함.
+
