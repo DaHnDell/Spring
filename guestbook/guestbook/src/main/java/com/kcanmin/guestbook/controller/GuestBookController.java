@@ -57,14 +57,18 @@ public class GuestBookController {
   public String modify(GuestbookDTO dto, PageRequestDTO pageRequestDTO, RedirectAttributes rttr){
     service.modify(dto);
     rttr.addAttribute("page", pageRequestDTO.getPage());
+    rttr.addAttribute("type", pageRequestDTO.getType());
+    rttr.addAttribute("keyword", pageRequestDTO.getKeyword());
     return "redirect:list";
   }
-
-  @DeleteMapping("remove")
+  
+  @PostMapping("remove")
   public String remove(GuestbookDTO dto, PageRequestDTO pageRequestDTO, RedirectAttributes rttr) {
-      service.remove(dto.getGno());
-      rttr.addAttribute("page", pageRequestDTO.getPage());
-      return "redirect:list";
+    service.remove(dto.getGno());
+    rttr.addAttribute("page", 1); // 삭제 후에는 1페이지로 이동.
+    rttr.addAttribute("type", pageRequestDTO.getType());
+    rttr.addAttribute("keyword", pageRequestDTO.getKeyword());
+    return "redirect:list";
   }
   
   

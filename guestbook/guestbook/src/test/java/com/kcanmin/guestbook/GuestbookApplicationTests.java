@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
 import com.kcanmin.guestbook.repository.GuestbookRepository;
@@ -19,13 +20,13 @@ import lombok.extern.log4j.Log4j2;
 class GuestbookApplicationTests {
 	@Autowired
 	private GuestbookRepository repository;
-
+	@Transactional
 	@Test
 	public void contextLoads() {
 		log.info("QueryDSL_Test");
 	}
 
-
+	@Transactional
 	@Test
 	public void TestInsert(){
 		repository.saveAll(
@@ -38,12 +39,12 @@ class GuestbookApplicationTests {
 			}).toList()
 		);
 	}
-
+	@Transactional
 	@Test
 	public void testSelectList(){
 		log.info(repository.findById(1L));
 	}
-
+	@Transactional
 	@Test
 	public void testUpdateList(){
 		Long gno = 1L;

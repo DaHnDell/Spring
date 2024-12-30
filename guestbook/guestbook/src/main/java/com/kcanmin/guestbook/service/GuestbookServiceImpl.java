@@ -74,7 +74,8 @@ public class GuestbookServiceImpl implements GuestbookService{
   @Override
   public PageResultDTO<GuestbookDTO, GuestbookEntitiy> list(PageRequestDTO dto) {
     Pageable pageable = dto.getPageable(Sort.by(Direction.DESC, "gno"));
-    Page<GuestbookEntitiy> page = repository.findAll(pageable);
+    BooleanBuilder booleanBuilder = getSearch(dto);
+    Page<GuestbookEntitiy> page = repository.findAll(booleanBuilder, pageable);
     Function<GuestbookEntitiy, GuestbookDTO> function = e-> toDTO(e);
     PageResultDTO<GuestbookDTO, GuestbookEntitiy> resultDTO = new PageResultDTO<>(page, function);
     return resultDTO;
@@ -102,10 +103,10 @@ public class GuestbookServiceImpl implements GuestbookService{
       conditionaBooleanBuilder.or(qGuestbookEntitiy.title.contains(keyword));
     }
     if(type.contains("C")){
-      conditionaBooleanBuilder.or(qGuestbookEntitiy.title.contains(keyword));
+      conditionaBooleanBuilder.or(qGuestbookEntitiy.content.contains(keyword));
     }
     if(type.contains("W")){
-      conditionaBooleanBuilder.or(qGuestbookEntitiy.title.contains(keyword));
+      conditionaBooleanBuilder.or(qGuestbookEntitiy.writer.contains(keyword));
     }
     booleanBuilder.and(conditionaBooleanBuilder);
     return booleanBuilder;

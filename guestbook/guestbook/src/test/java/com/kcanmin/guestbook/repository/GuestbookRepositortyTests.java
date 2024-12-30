@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
 import com.kcanmin.guestbook.domain.entity.QGuestbookEntitiy;
 import com.querydsl.core.BooleanBuilder;
@@ -21,12 +23,13 @@ public class GuestbookRepositortyTests {
   @Autowired
   private GuestbookRepository repository;
 
+  @Transactional
   @Test
   public void testExists(){
     log.info(repository);
   }
 
-
+  @Transactional
   @Test
   public void testQuerydsl(){
     GuestbookEntitiy.GuestbookEntitiyBuilder guestbookbuilder = GuestbookEntitiy.builder();
