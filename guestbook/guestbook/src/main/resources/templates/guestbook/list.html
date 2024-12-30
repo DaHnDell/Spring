@@ -3,7 +3,26 @@
   <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
       <h1>Guest Book List <span><a th:href="@{/guestbook/register}"><button class="btn btn-ouline-primary">REGI</button></a></span></h1>
-      <h1>[[${result.pageList}]]</h1>
+      <!-- 검색창 시작 -->
+      <form >
+        <div class="form-check float-start clearfix me-4">
+          <input class="form-check-input" type="checkbox" id="title" name="type" value="T" checked>
+          <label class="form-check-label">Title</label>
+        </div>
+        <div class="form-check float-start clearfix me-4">
+          <input class="form-check-input" type="checkbox" id="content" name="type" value="C">
+          <label class="form-check-label">Content</label>
+        </div>
+        <div class="form-check float-start clearfix me-4">
+          <input class="form-check-input" type="checkbox" id="writer" name="type" value="W">
+          <label class="form-check-label">Writer</label>
+        </div>
+        <div class="input-group mb-3 float-start clearfix me-4">
+          <input type="text" class="form-control" placeholder="Search" name="keyword">
+          <button class="btn btn-success" type="submit">Go</button>
+        </div>
+      </form>
+      <!-- 검색창 끝~ -->
       <table class = "table table-striped">
         <thead>
           <tr>
@@ -23,19 +42,14 @@
         </tbody>
       </table>
       <ul class="pagination justify-content-center my-3">
-        <li class="page-item" th:if="${result.prev}"><a class="page-link" th:href="@{/guestbook/list(page=${result.start -1})}">Previous</a></li>
+        <li class="page-item" th:if="${result.prev}"><a class="page-link" th:href="@{/guestbook/list(page=${result.start -1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword},)}">Previous</a></li>
         
-        <li class="'page-item' +  ${result.page == p ? 'active' : ''}" th:each="p : ${result.pageList}"><a class="page-link" th:href="@{/guestbook/list(page=${p})}">[[${p}]]</a></li>
+        <li class="'page-item' +  ${result.page == p ? 'active' : ''}" th:each="p : ${result.pageList}"><a class="page-link" th:href="@{/guestbook/list(page=${p}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword},)}">[[${p}]]</a></li>
         <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
         <li class="page-item"><a class="page-link" href="#">3</a></li> -->
         
-        <li class="page-item" th:if="${result.Next}"><a class="page-link" th:href="@{/guestbook/list(page=${result.end +1})}">Next</a></li>
+        <li class="page-item" th:if="${result.Next}"><a class="page-link" th:href="@{/guestbook/list(page=${result.end +1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword},)}">Next</a></li>
       </ul>
-      <!-- Button to Open the Modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Open modal
-      </button>
-
       <!-- The Modal -->
       <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -46,12 +60,10 @@
               <h4 class="modal-title">Modal Heading</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <!-- Modal body -->
             <div class="modal-body">
               [[${msg}]] 번 게시글이 작성되었습니다.
             </div>
-
             <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

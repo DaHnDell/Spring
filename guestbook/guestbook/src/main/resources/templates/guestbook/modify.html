@@ -32,6 +32,8 @@
         </div>
         
         <input type="hidden" name="page" th:value="${pageDto.page}">
+        <input type="hidden" name="type" th:value="${pageDto.type}">
+        <input type="hidden" name="keyword" th:value="${pageDto.keyword}">
         <a class="btn btn-primary">Modify</a>
         <button class="btn btn-danger" formation="remove">Remove</a>
         <a th:href="@{/guestbook/list(page=${pageDto.page})}" class="btn btn-success">List</a>

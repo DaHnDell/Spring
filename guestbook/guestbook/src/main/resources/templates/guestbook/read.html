@@ -28,8 +28,8 @@
           <label class="writer">writer</label>
           <input type="text" id = "writer" name="modDate" placeholder="Enter Writer" class="form-control" readonly th:value="${dto.modDate}">
         </div>
-        <a th:href="@{/guestbook/modify(gno=${dto.gno}, page=${pageDto.page})}" class="btn btn-primary">Modify</a>
-        <a th:href="@{/guestbook/list(page=${pageDto.page})}" class="btn btn-success">List</a>
+        <a th:href="@{/guestbook/modify(gno=${dto.gno}, page=${pageDto.page}, type=${pageDto.type}, keyword=${pageDto.keyword})}" class="btn btn-primary">Modify</a>
+        <a th:href="@{/guestbook/list(page=${pageDto.page}, type=${pageDto.type}, keyword=${pageDto.keyword})}" class="btn btn-success">List</a>
       </form>
 
     </th:block>
