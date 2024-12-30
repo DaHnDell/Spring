@@ -3,8 +3,6 @@ package com.kcanmin.guestbook.service;
 import java.util.List;
 
 import com.kcanmin.guestbook.domain.dto.GuestbookDTO;
-import com.kcanmin.guestbook.domain.dto.GuestbookListDTO;
-import com.kcanmin.guestbook.domain.dto.GuestbookViewDTO;
 import com.kcanmin.guestbook.domain.dto.PageRequestDTO;
 import com.kcanmin.guestbook.domain.dto.PageResultDTO;
 import com.kcanmin.guestbook.domain.entity.GuestbookEntitiy;
@@ -14,9 +12,9 @@ public interface GuestbookService { // 스태틱 키워드를 통해 인터페�
   PageResultDTO<GuestbookDTO, GuestbookEntitiy> list(PageRequestDTO dto);
   void modify(GuestbookDTO dto);
   void remove(Long gno);
-  List<GuestbookListDTO> list();
+  // List<GuestbookListDTO> list();
   
-  GuestbookViewDTO get(Long gno);
+  // GuestbookViewDTO get(Long gno);
   GuestbookDTO read(Long gno);
 
   default GuestbookEntitiy toEntitiy(GuestbookDTO dto){
