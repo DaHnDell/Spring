@@ -7,9 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import com.kcanmin.guestbook.domain.entity.BoardEntity;
+import org.springframework.stereotype.Repository;
 
-public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
+import com.kcanmin.guestbook.domain.entity.BoardEntity;
+import com.kcanmin.guestbook.repository.search.SearchBoardRepository;
+
+@Repository
+public interface BoardRepository extends JpaRepository<BoardEntity, Long>, SearchBoardRepository{
   @Query("select b, m from tbl_board b left join member m where b.bno = :bno")
   Object getBoardWithMember(@Param("bno") Long bno);
 
@@ -26,8 +30,8 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
 
   //tbl_board에 있는 갯수를 세 오는데 반드시 별칭 줘서 세 올 것.
   @Query("select b, count(r)  \r\n" + //
-        "from tbl_board b \r\n" + //
-        "left join tbl_reply r on b = r.board\r\n" + //
-        "where b.bno = :bno")
-  Object[] getBoardByBno(@Param("bno") Long bno);
+            "from tbl_board b \r\n" + //
+            "left join tbl_reply r on b = r.board\r\n" + //
+            "where b.bno = :bno")
+  Object getBoardByBno(@Param("bno") Long bno);
 }

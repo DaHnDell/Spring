@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kcanmin.guestbook.domain.dto.BoardDto;
 import com.kcanmin.guestbook.domain.entity.BoardEntity;
 import com.kcanmin.guestbook.domain.entity.MemberEntity;
 import lombok.extern.log4j.Log4j2;
@@ -66,6 +67,12 @@ public class BoardRepositoryTests {
 
   }
 
+  @Transactional
+  @Test
+  public void testGet(){
+    
+  }
+
   @Test
   @Transactional
   public void testGetBoardWithReply(){
@@ -87,4 +94,29 @@ public class BoardRepositoryTests {
     Object[] arr = (Object[])result;
     log.info(Arrays.toString(arr));
   }
+
+  @Test
+  public void testGetone(){
+    Object[] result = ((Object[])repository.getBoardByBno(100L));
+    log.info(Arrays.toString(result));
+  }
+
+  @Test
+  public void testDelete(){
+
+  }
+
+  @Test
+  public void testSearch1(){
+    repository.search1();
+  }
+
+  @Test
+  public void testSearchPage(){
+    // Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
+    Page<Object[]> result = repository.searchPage("T", "1", 
+    PageRequest.of(1, 5, Sort.by(Direction.DESC, "bno", "title")));
+    // result.forEach(log::info);
+  }
+
 }
