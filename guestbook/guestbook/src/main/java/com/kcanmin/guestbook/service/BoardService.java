@@ -1,8 +1,12 @@
 package com.kcanmin.guestbook.service;
 
+import java.util.List;
+
 import org.aspectj.weaver.Member;
 
 import com.kcanmin.guestbook.domain.dto.BoardDto;
+import com.kcanmin.guestbook.domain.dto.PageRequestDTO;
+import com.kcanmin.guestbook.domain.dto.PageResultDTO;
 import com.kcanmin.guestbook.domain.entity.BoardEntity;
 import com.kcanmin.guestbook.domain.entity.MemberEntity;
 
@@ -20,9 +24,10 @@ public interface BoardService {
     if(arr == null) return null;
     BoardDto.BoardDtoBuilder builder = BoardDto.builder(); 
     for(Object o : arr){
+      if(o == null) continue;
       Class<?> claz = o.getClass();
-      if(claz == int.class || claz == Integer.class){
-        builder.replyCnt(Integer.parseInt(o.toString()));
+      if(claz == long.class || claz == Long.class){
+        builder.replyCnt(Long.valueOf(o.toString()));
       }else if(claz == MemberEntity.class){
         builder.memberEmail(((MemberEntity) o).getEmail());
         builder.memberName(((MemberEntity) o).getName());
@@ -47,4 +52,9 @@ public interface BoardService {
   Long register(BoardDto dto);
 
   BoardDto get(Long bno);
+
+  void remove(Long bno);
+  void modify(BoardDto dto);
+  PageResultDTO<BoardDto, Object[]> list(PageRequestDTO dto);
+
 }

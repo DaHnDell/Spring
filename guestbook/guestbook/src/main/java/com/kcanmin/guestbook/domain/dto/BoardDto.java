@@ -2,8 +2,6 @@ package com.kcanmin.guestbook.domain.dto;
 
 import java.time.LocalDateTime;
 
-import org.springframework.cglib.core.Local;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,5 +19,5 @@ public class BoardDto {
   private String memberName;
   private LocalDateTime regDate;
   private LocalDateTime modDate;
-  private int replyCnt;
+  private Long replyCnt;
 }

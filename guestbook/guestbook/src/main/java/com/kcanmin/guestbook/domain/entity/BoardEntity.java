@@ -6,12 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@Table(name="tbl_board")
 @Entity(name = "tbl_board")
 @Builder
 @AllArgsConstructor
@@ -28,9 +30,6 @@ public class BoardEntity extends BaseEntity{
 
   private String content;
 
-  
-  // @LazyToOne(fetch = FeatureDescriptor)
-  // @ManyToOne(fetch = )
-  @ManyToOne(fetch = FetchType.LAZY) 
+  @ManyToOne
   private MemberEntity member;
 }
