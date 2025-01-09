@@ -5,7 +5,10 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.MemberRole;
@@ -20,6 +23,8 @@ public class MemberRepositoryTests {
 
   @Autowired
   private PasswordEncoder encoder;
+
+  UserDetails userDetails;
 
   @Test
   public void testInsert(){
@@ -39,5 +44,17 @@ public class MemberRepositoryTests {
     });
   }
 
+  @Test
+  @Transactional
+  public void testFindByEmail() {
+    Member me = repository.findByEmail("user100@kcanmin 100.com");
+    log.info(me);
+  }
 
+  @Test
+  @Transactional
+  public void testFindByEmailAndFromSocial() {
+    Member me = repository.findByEmailAndFromSocial("user100@kcanmin 100.com", false);
+    log.info(me);
+  }
 }
