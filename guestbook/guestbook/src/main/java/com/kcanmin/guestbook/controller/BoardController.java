@@ -42,7 +42,7 @@ public class BoardController {
   }
   
 
-  @PostMapping("{bno}")
+  @PostMapping
   public ResponseEntity<?> register(@RequestBody BoardDto dto){
     boardService.register(dto);
     return ResponseEntity.ok().body("success");

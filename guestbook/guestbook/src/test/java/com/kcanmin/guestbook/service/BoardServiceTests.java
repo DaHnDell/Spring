@@ -37,6 +37,7 @@ public class BoardServiceTests {
 
   @Test
   @Transactional
+  @Rollback(false)
   public void testResgister(){
     // given
     BoardDto dto = BoardDto.builder().content("서비스 테스트").title("서비스 테스트 제목").memberName("nullbu").memberEmail("null@23com").build();
