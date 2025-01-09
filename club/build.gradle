@@ -36,8 +36,35 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// spring tester junit
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// lombok test impl
+	testImplementation 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	// log4j2 impl
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+	// springdoc mvc swagger
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
+
 }
+
+	// springboot logger
+configurations { 
+	all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+sourceSets {
+    main.java.srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
 }
