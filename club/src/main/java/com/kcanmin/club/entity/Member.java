@@ -38,7 +38,8 @@ public class Member extends BaseEntity{
   @Builder.Default
   @ElementCollection(fetch = FetchType.LAZY)
   private Set<MemberRole> roleSet = new HashSet<>();
-  private void addMemberRole(MemberRole memberRole){
+
+  public void addMemberRole(MemberRole memberRole){
     roleSet.add(memberRole);
   }
   

@@ -15,7 +15,6 @@ import lombok.Getter;
 @EntityListeners(value = AuditingEntityListener.class) // 어플리케이션 시작 지점 : 메인.
 @Getter
 public class BaseEntity {
-  
   @CreatedDate
   @Column(name = "regdate", updatable = false) // 칼럼의 이름 정해주기, + 내부적 수정 금지
   private LocalDateTime regDate;
@@ -23,5 +22,4 @@ public class BaseEntity {
   @LastModifiedDate
   @Column(name = "moddate")
   private LocalDateTime modDate;
-
 }
