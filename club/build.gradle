@@ -52,6 +52,11 @@ dependencies {
 	// springdoc mvc swagger
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
 
+	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+	implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.1.3.RELEASE'
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '3.4.1'
 }
 
 	// springboot logger
