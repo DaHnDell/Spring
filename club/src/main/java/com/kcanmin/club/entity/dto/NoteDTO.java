@@ -17,5 +17,5 @@ public class NoteDTO {
   private String content;
   private String writerEmail;
   private LocalDateTime regDate, modDate;
-
+  private Long mno;
 }

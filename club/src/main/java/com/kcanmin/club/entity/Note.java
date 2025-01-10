@@ -1,6 +1,6 @@
 package com.kcanmin.club.entity;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,10 +29,10 @@ public class Note extends BaseEntity{
   @ManyToOne(fetch = FetchType.LAZY)
   private Member member;
 
-  // public void changeTitle(String title){
-  //   this.title = title;
-  // }
-  // public void changeContent(String content){
-  //   this.content = content;
-  // }
+  public void changeTitle(String title){
+    this.title = title;
+  }
+  public void changeContent(String content){
+    this.content = content;
+  }
 }
