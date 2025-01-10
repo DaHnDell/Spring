@@ -18,25 +18,21 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "member")
 public class Note extends BaseEntity{
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long num;
-
   private String title;
-
   private String content;
-
   @ManyToOne(fetch = FetchType.LAZY)
-  @Column(name="mno")
   private Member member;
 
-  public void changeTitle(String title){
-    this.title = title;
-  }
-  public void changeContent(String content){
-    this.content = content;
-  }
+  // public void changeTitle(String title){
+  //   this.title = title;
+  // }
+  // public void changeContent(String content){
+  //   this.content = content;
+  // }
 }
