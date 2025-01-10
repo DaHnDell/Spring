@@ -32,8 +32,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
     AuthMemberDTO authMemberDTO =(AuthMemberDTO)authentication.getPrincipal();
     boolean fromSocial = authMemberDTO.getFromSocial();
     log.info("need Modify Member ?" + fromSocial);
-    boolean passwordResult = encoder.matches("1234", authMemberDTO.getPassword());
-
+    // boolean passwordResult = encoder.matches("1234", authMemberDTO.getPw());
+    boolean passwordResult = authMemberDTO.getPw().equals("1234");
+    log.info(fromSocial);
     if(fromSocial && passwordResult){
       redirectStrategy.sendRedirect(request, response, "/member/modify?from=social");
     }
