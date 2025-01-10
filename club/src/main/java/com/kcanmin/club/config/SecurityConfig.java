@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.kcanmin.club.handler.LoginSuccessHandler;
+
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -18,21 +20,27 @@ public class SecurityConfig {
     return new BCryptPasswordEncoder();
   };
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-      http
-          .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (필요에 따라 활성화)
-          .authorizeHttpRequests(auth -> auth
-              .requestMatchers("/sample/all").permitAll()
-              .requestMatchers("/sample/member").hasRole("USER")
-              .requestMatchers("/sample/admin").hasRole("ADMIN") 
-              .anyRequest().authenticated() // 나머지는 인증 필요
-          )
-          .formLogin(form -> form.permitAll()) // 기본 로그인 폼 활성화
-          .logout(form -> form.logoutUrl("/member/signout"))
-          .oauth2Login(Customizer.withDefaults());
-      return http.build();
+  @Bean
+  public LoginSuccessHandler loginSuccessHandler() {
+    return new LoginSuccessHandler(passwordEncoder());
   }
+
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (필요에 따라 활성화)
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/sample/all").permitAll() //모두 인증 없이 접근 가능
+            .requestMatchers("/sample/member").hasRole("USER") // 유저만 접근 가능
+            .requestMatchers("/sample/admin").hasRole("ADMIN") // 관리자만 접근 가능
+            .anyRequest().authenticated() // 나머지는 인증 필요
+        )
+        .formLogin(form -> form.permitAll()) // 기본 로그인 폼 활성화
+        .logout(form -> form.logoutUrl("/member/signout"))
+        .oauth2Login(o->o.successHandler(loginSuccessHandler()));
+    return http.build();
+  }
+
 }
 // @Configuration
 // public class SecurityConfig{
