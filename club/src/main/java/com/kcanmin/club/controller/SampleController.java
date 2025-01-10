@@ -14,17 +14,17 @@ import com.kcanmin.club.security.dto.AuthMemberDTO;
 public class SampleController {
   
   @GetMapping("/all")
-  public void all(){
+  public void all(AuthMemberDTO dto){
     log.info("/all Start ::::::::::::::::::::::::::::::");
   }
 
   @GetMapping("/member")
-  public void exMember(){
+  public void exMember(AuthMemberDTO dto){
     log.info("/member Start ::::::::::::::::::::::::::::::");
   }
 
   @GetMapping("/admin")
-  public void exAdmin(){
+  public void exAdmin(AuthMemberDTO dto){
     log.info("/Admin Start ::::::::::::::::::::::::::::::");
   }
 
