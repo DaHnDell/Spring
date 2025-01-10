@@ -13,14 +13,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+// import lombok.ToString;
 
 @Entity(name = "tbl_member")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+// @ToString
 public class Member extends BaseEntity{
 
   @Id
@@ -33,7 +33,7 @@ public class Member extends BaseEntity{
 
   private String name;
 
-  private boolean fromSocial;
+  private Boolean fromSocial;
 
   @Builder.Default
   @ElementCollection(fetch = FetchType.LAZY)
