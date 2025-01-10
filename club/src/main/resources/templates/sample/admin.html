@@ -7,6 +7,13 @@
 </head>
 <body>
   <h1> A D M I N </h1>  
+
+  <div sec:authorize="hasRole('USER')">USER ROLE</div>
+  <div sec:authorize="hasRole('MANAGER')">MANAGER ROLE</div>
+  <div sec:authorize="hasRole('ADMIN')">ADMIN ROLE</div>
+  <div sec:authentication="principal">ADMIN ROLE</div>
+  <div sec:authentication="principal.username">ADMIN ROLE</div>
+
   <a href="all">ALL</a>
   <a href="member">MEMBER</a>
   <a href="admin">ADMIN</a>

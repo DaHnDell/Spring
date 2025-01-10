@@ -10,8 +10,8 @@
   <div sec:authorize="hasRole('USER')">USER ROLE</div>
   <div sec:authorize="hasRole('MANAGER')">MANAGER ROLE</div>
   <div sec:authorize="hasRole('ADMIN')">ADMIN ROLE</div>
-  <div sec:authentication="principal">ADMIN ROLE</div>
-  <div sec:authentication="principal.username">ADMIN ROLE</div>
+  <div sec:authentication="principal"></div>
+  <div sec:authentication="principal.username"></div>
   <a href="all">ALL</a>
   <a href="member">MEMBER</a>
   <a href="admin">ADMIN</a>
