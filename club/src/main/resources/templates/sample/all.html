@@ -12,6 +12,11 @@
   <div sec:authorize="hasRole('MANAGER')">MANAGER ROLE</div>
   <div sec:authorize="hasRole('ADMIN')">ADMIN ROLE</div>
   <div sec:authentication="principal"></div>
+  <div sec:authentication="principal"></div>
+  <div sec:authorize="isAuthenticated()">
+    <div sec:authentication="principal.username"></div>
+    <div sec:authentication="principal.password"></div>
+  </div>
 
   <a href="all">ALL</a>
   <a href="member">MEMBER</a>
