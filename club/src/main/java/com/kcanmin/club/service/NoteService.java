@@ -10,9 +10,9 @@ public interface NoteService {
   Long register(NoteDTO noteDTO);
 
   // findbyNum;
-  Note get(Long num);
+  NoteDTO get(Long num);
 
-  List<Note> list();
+  List<NoteDTO> list(String email);
 
   void modify(NoteDTO noteDTO);
 
@@ -22,12 +22,13 @@ public interface NoteService {
   default Note dtoToEntity(NoteDTO noteDTO){
     return Note
       .builder()
-      .num(null)
-      .title(null)
-      .content(null)
+      .num(noteDTO.getNum())
+      .title(noteDTO.getTitle())
+      .content(noteDTO.getContent())
       .member(Member
         .builder()
         .email(noteDTO.getWriterEmail())
+        .mno(noteDTO.getMno())
         .build())
       .build();
   }
