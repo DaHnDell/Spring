@@ -1,4 +1,4 @@
-package com.kcanmin.club.handler;
+package com.kcanmin.club.security.handler;
 
 import java.io.IOException;
 

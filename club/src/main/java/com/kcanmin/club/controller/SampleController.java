@@ -44,7 +44,7 @@ public class SampleController {
 
   @GetMapping("exMemberOnly")
   @ResponseBody
-  @PreAuthorize("#dto != null && #dto.username eq\"user1000@javaman.shop\"")
+  @PreAuthorize("#dto != null && #dto.username eq\"user100@kcanmin.com\"")
   public String ex(@AuthenticationPrincipal AuthMemberDTO dto) {
     log.info("ex 스타트!~"+dto.getUsername());
     return dto.getEmail();

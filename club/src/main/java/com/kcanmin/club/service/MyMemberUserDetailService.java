@@ -26,16 +26,16 @@ public class MyMemberUserDetailService implements UserDetailsService{
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     log.info(username);
-      Member member = repository.findByEmailAndFromSocial(username, false);
-      if(member == null){
-        throw new UsernameNotFoundException(username);
-      }
-      log.info(member);
-      log.info(member.getEmail());
-      log.info(member.getPassword());
-      log.info(member.getRoleSet());
-      AuthMemberDTO authMemberDTO = new AuthMemberDTO(member.getEmail(), member.getPassword(), member.getMno(), member.getFromSocial(), member.getName(),member.getRoleSet().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())).toList());
-      return authMemberDTO;
+    Member member = repository.findByEmailAndFromSocial(username, false);
+    if(member == null){
+      throw new UsernameNotFoundException(username);
+    }
+    log.info(member);
+    log.info(member.getEmail());
+    log.info(member.getPassword());
+    log.info(member.getRoleSet());
+    AuthMemberDTO authMemberDTO = new AuthMemberDTO(member.getEmail(), member.getPassword(), member.getMno(), member.getFromSocial(), member.getName(),member.getRoleSet().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())).toList());
+    return authMemberDTO;
   }
 
   // @Override

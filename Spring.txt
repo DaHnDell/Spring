@@ -16,7 +16,9 @@
 -- String join = 배열의 요소를 문자열로 합쳐주는데, 추가적인 오버로딩을 활용하면 구분자도 지정해 줄 수 있음,,
 -- Security의 기본 방식은 filter 이다
 -- equalsIgnoreCase 을 사용하면 대 / 소문자 구분을 무시하고 사용한다.
-
+-- .requestMatchers("/api/**").permitAll() 사용 시 이 url로 접근하면 모든 권한을 허용해 준다. 특히 test 할 때(API 서버)에서 유용함.
+CORS: "누가 내 서버에 접근할 수 있을까?"
+CSRF: "요청이 진짜 사용자가 보낸 것일까?"
 
 ///////
 

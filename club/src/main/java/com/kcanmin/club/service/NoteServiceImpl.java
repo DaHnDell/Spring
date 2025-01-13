@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.Note;
 import com.kcanmin.club.entity.dto.NoteDTO;
-import com.kcanmin.club.repository.MemberRepository;
 import com.kcanmin.club.repository.NoteRepository;
 
 import lombok.RequiredArgsConstructor;
