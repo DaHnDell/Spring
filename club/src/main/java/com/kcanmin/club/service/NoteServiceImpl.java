@@ -1,6 +1,7 @@
 package com.kcanmin.club.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,12 @@ public class NoteServiceImpl implements NoteService{
   // private MemberRepository memberRepository;
 
   @Override
-  public NoteDTO get(Long num) {
+  public Optional<NoteDTO> get(Long num) {
     log.info("note Get start =========================");    
-    Note note = repository.findByNum(num);
+    // Note note = repository.findByNum(num);
     log.info("note Get End ===========================");    
-    return EntityToDTO(note);
+    return repository.findById(num).map(this::entityToDTO);
+    // return EntityToDTO(note);
   }
   
   @Override
@@ -36,7 +38,7 @@ public class NoteServiceImpl implements NoteService{
     log.info("List list start =========================");    
     List<Note> returnList = repository.findByMemberEmail(email);
     log.info("List list End ===========================");    
-    return returnList.stream().map(this::EntityToDTO).toList();
+    return returnList.stream().map(this::entityToDTO).toList();
   }
   
   @Override
@@ -86,6 +88,11 @@ public class NoteServiceImpl implements NoteService{
     log.info("void remove start =========================");    
     repository.deleteById(num);    
     log.info("void remove End ===========================");    
+  }
+
+  @Override
+  public List<NoteDTO> allList() {
+    return repository.findAll().stream().map(this::entityToDTO).toList();
   }
   
 }

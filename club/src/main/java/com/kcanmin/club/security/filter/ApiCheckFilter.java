@@ -2,13 +2,15 @@ package com.kcanmin.club.security.filter;
 
 import java.io.IOException;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.kcanmin.club.util.JWTUtil;
-import com.nimbusds.jose.shaded.gson.JsonObject;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -38,6 +40,11 @@ public class ApiCheckFilter extends OncePerRequestFilter{
       log.info(request.getRequestURI());
     
       if(checkAuthHeader(request)){
+        String token = request.getHeader("Authorization").substring(7);
+        String email = jwtUtil.validateExtract(token);
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
         return;
       }
@@ -46,7 +53,7 @@ public class ApiCheckFilter extends OncePerRequestFilter{
         response.setStatus(403);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", 403);
-        jsonObject.put("message", "FAILED TO CHEK API TOKEN ; PLZ TRY AGAIN AT AUTHORIZED ::");
+        jsonObject.put("message", " :: FAILED TO CHEK API TOKEN :: ");
         response.getWriter().print(jsonObject);
       }
       return;

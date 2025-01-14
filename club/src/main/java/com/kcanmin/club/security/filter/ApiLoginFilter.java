@@ -2,14 +2,12 @@ package com.kcanmin.club.security.filter;
 
 import java.io.IOException;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 
-import com.kcanmin.club.security.handler.ApiLoginFailHandler;
 import com.kcanmin.club.util.JWTUtil;
 
 import jakarta.servlet.FilterChain;
@@ -54,6 +52,8 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter{
     Authentication authentication = getAuthenticationManager().authenticate(authenticationToken);
     // return getAuthenticationManager().authenticate(authenticationToken);
     log.info(authentication.getPrincipal());
+    log.info(authentication.getCredentials());
+    log.info(authenticationToken);
     return authentication;
   }
   
@@ -70,7 +70,9 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter{
       String token = jwtUtil.generateToken(email);
       response.setContentType("text/plain");
       response.getOutputStream().write(token.getBytes());
+      log.info(token);
       log.info("==============================");
+      response.getOutputStream().close();
     } catch (Exception e) {
       e.printStackTrace();
     }

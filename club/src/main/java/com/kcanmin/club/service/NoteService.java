@@ -1,6 +1,7 @@
 package com.kcanmin.club.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.Note;
@@ -10,7 +11,7 @@ public interface NoteService {
   Long register(NoteDTO noteDTO);
 
   // findbyNum;
-  NoteDTO get(Long num);
+  Optional<NoteDTO> get(Long num);
 
   List<NoteDTO> list(String email);
 
@@ -18,6 +19,7 @@ public interface NoteService {
 
   void remove(Long num);
 
+  List<NoteDTO> allList();
 
   default Note dtoToEntity(NoteDTO noteDTO){
     return Note
@@ -32,8 +34,8 @@ public interface NoteService {
           .build())
       .build();
   }
-
-  default NoteDTO EntityToDTO(Note note){
+// RestController Advice (통합 예외 처리) , 전용 예외 처리(404, 403 등등);
+  default NoteDTO entityToDTO(Note note){
     return NoteDTO
       .builder()
         .num(note.getNum())

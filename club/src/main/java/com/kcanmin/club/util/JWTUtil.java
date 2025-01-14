@@ -33,7 +33,7 @@ public class JWTUtil {
 // 안전한 애플리케이션에서는 서명되지 않은 JWT를 허용하지 않습니다.
 
 
-  public String validateExtract(String tokenSTR) throws Exception {
+  public String validateExtract(String tokenSTR) {
     String contentValue = null;
     // JwtValidators.createDefault().
     // Jwts.parser().verifyWith(key).build().parse(tokenSTR).

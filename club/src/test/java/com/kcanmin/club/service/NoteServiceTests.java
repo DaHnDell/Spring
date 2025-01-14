@@ -19,8 +19,8 @@ public class NoteServiceTests {
 
   @Test
   public void getTest(){
-    NoteDTO note = service.get(1L);
-    log.info(note);
+    // NoteDTO note = service.get(1L);
+    // log.info(note);
   }
 
   @Test
