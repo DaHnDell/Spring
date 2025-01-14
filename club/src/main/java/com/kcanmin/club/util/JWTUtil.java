@@ -5,8 +5,6 @@ import java.util.Date;
 
 import javax.crypto.SecretKey;
 
-import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -15,7 +13,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class JWTUtil {
-  private String secretKey = "kcanmin1234567890kcanmin1234567890kcanmin1234567890";
+  private String secretKey = "kcanmin1234567890kcanmin1234567890kcanmin1234567890"; // 
   // private long expire = 60 * 24 * 30;
   private SecretKey key = Keys.hmacShaKeyFor(secretKey.getBytes());
 

@@ -22,26 +22,26 @@ public interface NoteService {
   default Note dtoToEntity(NoteDTO noteDTO){
     return Note
       .builder()
-      .num(noteDTO.getNum())
-      .title(noteDTO.getTitle())
-      .content(noteDTO.getContent())
-      .member(Member
-        .builder()
-        .email(noteDTO.getWriterEmail())
-        .mno(noteDTO.getMno())
-        .build())
+        .num(noteDTO.getNum())
+        .title(noteDTO.getTitle())
+        .content(noteDTO.getContent())
+        .member(Member
+          .builder()
+          .email(noteDTO.getWriterEmail())
+          .mno(noteDTO.getMno())
+          .build())
       .build();
   }
 
   default NoteDTO EntityToDTO(Note note){
     return NoteDTO
       .builder()
-      .num(note.getNum())
-      .title(note.getTitle())
-      .content(note.getContent())
-      .writerEmail(note.getMember().getEmail())
-      .regDate(note.getRegDate())
-      .modDate(note.getModDate())
+        .num(note.getNum())
+        .title(note.getTitle())
+        .content(note.getContent())
+        .writerEmail(note.getMember().getEmail())
+        .regDate(note.getRegDate())
+        .modDate(note.getModDate())
       .build();
   }
 
