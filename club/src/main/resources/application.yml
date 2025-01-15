@@ -43,3 +43,4 @@ server:
     encoding:
       force: true
     # context-path: /guestbook
+

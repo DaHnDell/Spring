@@ -11,7 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.dto.NoteDTO;
+import com.kcanmin.club.repository.MemberRepository;
 import com.kcanmin.club.service.NoteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -30,6 +34,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @CrossOrigin
 public class NoteController {
   
+
+
   @Autowired
   private NoteService noteService;
 
@@ -40,6 +46,8 @@ public class NoteController {
     log.info("NoteController register ended =========================");
     return new ResponseEntity<>(num, HttpStatus.OK);
   }  
+
+
   
   @DeleteMapping(value = "/{num}", produces = MediaType.TEXT_PLAIN_VALUE)
   public ResponseEntity<String> remove(@PathVariable("num") Long num){
@@ -47,6 +55,15 @@ public class NoteController {
     noteService.remove(num);
     log.info("NoteController Delete ended =========================");
     return new ResponseEntity<>(num + "removed", HttpStatus.OK);
+  }
+
+
+  @PutMapping(value = "/{num}")
+  public ResponseEntity<?> modify(@RequestBody NoteDTO noteDTO){
+    log.info("NoteController Modify start =========================");
+    noteService.modify(noteDTO);
+    log.info("NoteController Modify start =========================");
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @SuppressWarnings("unchecked")

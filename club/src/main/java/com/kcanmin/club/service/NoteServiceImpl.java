@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.Note;
 import com.kcanmin.club.entity.dto.NoteDTO;
+import com.kcanmin.club.repository.MemberRepository;
 import com.kcanmin.club.repository.NoteRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,9 @@ public class NoteServiceImpl implements NoteService{
 
   @Autowired
   private NoteRepository repository;
+
+  @Autowired
+  private MemberRepository memberRepository;
 
   // @Autowired
   // private MemberRepository memberRepository;
@@ -60,12 +65,11 @@ public class NoteServiceImpl implements NoteService{
   
   @Override
   public Long register(NoteDTO noteDTO) {
-    log.info("Long register start =========================");    
-    Note note = dtoToEntity(noteDTO);
-    repository.save(note);
-    Long returnLong = note.getNum();
+    log.info("Long register start ========================="); 
+    Member member = memberRepository.findByEmail(noteDTO.getWriterEmail());
+    noteDTO.setMno(member.getMno());
     log.info("Long register End ===========================");    
-    return returnLong;
+    return repository.save(dtoToEntity(noteDTO)).getNum();
   }
 
 // @Override
