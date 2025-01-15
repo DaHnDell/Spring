@@ -1,6 +1,8 @@
 package com.kcanmin.club.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -13,6 +15,7 @@ public class S3Service {
   @Value("${aws.s3.bucket-name}")
   private String bucketName;
 
+  @Autowired
   private final S3Client s3Client;
 
   public S3Service(S3Client s3Client) {

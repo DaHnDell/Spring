@@ -35,7 +35,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class NoteController {
   
 
-
   @Autowired
   private NoteService noteService;
 
