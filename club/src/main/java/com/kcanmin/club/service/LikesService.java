@@ -6,7 +6,7 @@ import com.kcanmin.club.entity.Note;
 import com.kcanmin.club.entity.dto.LikesDTO;
 
 public interface LikesService {
-  void toggle(LikesDTO dto);
+  boolean toggle(LikesDTO dto);
   boolean get(LikesDTO dto);
   
     default Likes toEntity(LikesDTO dto){
