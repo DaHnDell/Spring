@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/file")
+@RequestMapping("api/v1/file")
 @Log4j2
 public class FileController {
 
