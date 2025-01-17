@@ -42,6 +42,7 @@ public class NoteController {
   public ResponseEntity<Long> register(@RequestBody NoteDTO noteDTO){
     log.info("NoteController register start =========================");
     Long num = noteService.register(noteDTO);
+    log.info(noteDTO);
     log.info("NoteController register ended =========================");
     return new ResponseEntity<>(num, HttpStatus.OK);
   }  
@@ -60,6 +61,7 @@ public class NoteController {
   @PutMapping(value = "/{num}")
   public ResponseEntity<?> modify(@RequestBody NoteDTO noteDTO){
     log.info("NoteController Modify start =========================");
+    log.info(noteDTO);
     noteService.modify(noteDTO);
     log.info("NoteController Modify start =========================");
     return new ResponseEntity<>(HttpStatus.OK);

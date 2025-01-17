@@ -15,9 +15,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.Builder.Default;
-import net.bytebuddy.dynamic.TypeResolutionStrategy.Lazy;
 
 @Entity(name = "tbl_note")
 @Builder
@@ -33,6 +33,7 @@ public class Note extends BaseEntity{
   private String title;
   private String content;
   @ManyToOne(fetch = FetchType.LAZY)
+  @Setter
   private Member member;
 
   public void changeTitle(String title){
@@ -43,6 +44,7 @@ public class Note extends BaseEntity{
   }
 
   @Default // fetch 옵션은 로드 관련 개선이라서, 보통 필수가 아니지만 여기선 반필수.
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "note", orphanRemoval = true, cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Setter
   private List<Attach> attachs = new ArrayList<>();
 }

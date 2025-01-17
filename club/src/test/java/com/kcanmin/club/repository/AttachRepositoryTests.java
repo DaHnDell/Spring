@@ -22,9 +22,9 @@ public class AttachRepositoryTests {
 
   @Test
   public void repoExistTest(){
-    log.info("existTestStart");
-    log.info(repository);
-    log.info("existTestend");
+    // log.info("existTestStart");
+    // log.info(repository);
+    // log.info("existTestend");
   }
 
   @Test

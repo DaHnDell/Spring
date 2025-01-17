@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.Builder.Default;
 
 @Data
@@ -23,5 +24,6 @@ public class NoteDTO {
   private Long mno;
 
   @Default
+  @Setter
   private List<AttachDTO> attachDtos = new ArrayList<>();
 }

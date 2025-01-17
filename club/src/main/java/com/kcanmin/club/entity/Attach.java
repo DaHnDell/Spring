@@ -2,8 +2,6 @@ package com.kcanmin.club.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -21,7 +19,7 @@ import lombok.ToString;
 public class Attach extends BaseEntity{
   // uuid
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
+  // @GeneratedValue(strategy = GenerationType.UUID)
   private String uuid;
 
   // origin
@@ -32,15 +30,16 @@ public class Attach extends BaseEntity{
 
   // path
   private String path;
+  private String fileName;
 
+  private String ext;
+  private String mime;
+  private String url;
+  private Long size;
+  
   // note 
   @ManyToOne(fetch = FetchType.LAZY)
   private Note note;
 
-  private Long size;
-  private String mime;
-  private String fileName;
-  private String ext;
-  private String url;
   
 }
