@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.kcanmin.club.entity.Attach;
 import com.kcanmin.club.entity.dto.AttachDTO;
 import com.kcanmin.club.entity.dto.NoteDTO;
 
@@ -55,6 +54,12 @@ public class NoteServiceTests {
     .build()));
   }
 
+  @Test
+  public void testRead(){
+    NoteDTO dto = service.get(1L).get();
+    dto.getAttachDtos().forEach(log::info);
+  }
 
+  // @Test void testMod
 
 }

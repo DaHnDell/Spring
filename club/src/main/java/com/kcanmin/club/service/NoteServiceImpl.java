@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.kcanmin.club.entity.Attach;
+import com.kcanmin.club.entity.Likes;
 import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.Note;
 import com.kcanmin.club.entity.dto.NoteDTO;
 import com.kcanmin.club.repository.AttachRepository;
+import com.kcanmin.club.repository.LikesRepository;
 import com.kcanmin.club.repository.MemberRepository;
 import com.kcanmin.club.repository.NoteRepository;
 
@@ -33,21 +36,29 @@ public class NoteServiceImpl implements NoteService{
   @Autowired
   private AttachRepository attachRepository;
 
+  @Autowired
+  private LikesRepository likesRepository;
+
   @Override
   public Optional<NoteDTO> get(Long num) {
     log.info("note Get start =========================");    
     // Note note = repository.findByNum(num);
+    long count = likesRepository.count(Example.of(Likes.builder().note(Note.builder().num(num).build()).build()));
     log.info("note Get End ===========================");    
-    return repository.findById(num).map(this::toDTO);
+    return repository.findById(num).map(this::toDTO).map(d-> {d.setLikesCnt(count); return d;});
     // return EntityToDTO(note);
   }
   
   @Override
   public List<NoteDTO> list(String email) {
-    log.info("List list start =========================");    
-    List<Note> returnList = repository.findByMemberEmail(email);
-    log.info("List list End ===========================");    
-    return returnList.stream().map(this::toDTO).toList();
+    return repository.findNotesBy(email).stream().map(o->{
+      NoteDTO dto = toDTO((Note)o[0]);
+      dto.setLikesCnt((Long)o[1]);
+      dto.setAttachCnt((Long)o[2]);
+      return dto;
+    }).toList();
+    // List<Note> returnList = repository.findByMemberEmail(email);
+    // return returnList.stream().map(this::toDTO).toList();
   }
   
   @Override
@@ -75,6 +86,7 @@ public class NoteServiceImpl implements NoteService{
     memberRepository.save(member);
     repository.save(note);
   }
+
   
   // @Override
   // public Long register(NoteDTO noteDTO) {
@@ -190,7 +202,13 @@ public Long register(NoteDTO noteDTO) {
 
   @Override
   public List<NoteDTO> allList() {
-    return repository.findAll().stream().map(this::toDTO).toList();
+    return repository.findNotes().stream().map(o->{
+      NoteDTO dto = toDTO((Note)o[0]);
+      dto.setLikesCnt((Long)o[1]);
+      dto.setAttachCnt((Long)o[2]);
+      return dto;
+    }).toList();
+    // return repository.findAll().stream().map(this::toDTO).toList();
   }
   
 }

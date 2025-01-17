@@ -1,5 +1,6 @@
 package com.kcanmin.club.repository;
 
+import java.util.Arrays;
 import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.Test;
@@ -48,4 +49,10 @@ public class NoteRepositoryTests {
   public void testList2(){
     repository.findByMemberEmail("user100@kcanmin 100.com").forEach(log::info);
   }
+
+  @Test
+  public void testListJPQL(){
+    repository.findNotesBy("user101@kcanmin101.com").forEach(o->{log.info(Arrays.toString(o));});
+  }
+
 }

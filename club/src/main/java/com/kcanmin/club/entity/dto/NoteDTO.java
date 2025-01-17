@@ -22,6 +22,8 @@ public class NoteDTO {
   private String writerEmail;
   private LocalDateTime regDate, modDate;
   private Long mno;
+  private long likesCnt;
+  private long attachCnt;
 
   @Default
   @Setter
