@@ -2,6 +2,9 @@ package com.kcanmin.club.entity.composite;
 
 import java.io.Serializable;
 
+import com.kcanmin.club.entity.Member;
+import com.kcanmin.club.entity.dto.LikesDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -18,4 +21,8 @@ import lombok.Setter;
 public class LikesId implements Serializable{
   private Long member;
   private Long note;
+
+  public LikesId(LikesDTO dto){
+    // this.member = Member.builder().email().build();
+  }
 }

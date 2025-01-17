@@ -30,19 +30,15 @@ public class NoteServiceImpl implements NoteService{
   @Autowired
   private MemberRepository memberRepository;
 
-
   @Autowired
   private AttachRepository attachRepository;
-
-  // @Autowired
-  // private MemberRepository memberRepository;
 
   @Override
   public Optional<NoteDTO> get(Long num) {
     log.info("note Get start =========================");    
     // Note note = repository.findByNum(num);
     log.info("note Get End ===========================");    
-    return repository.findById(num).map(this::entityToDTO);
+    return repository.findById(num).map(this::toDTO);
     // return EntityToDTO(note);
   }
   
@@ -51,24 +47,33 @@ public class NoteServiceImpl implements NoteService{
     log.info("List list start =========================");    
     List<Note> returnList = repository.findByMemberEmail(email);
     log.info("List list End ===========================");    
-    return returnList.stream().map(this::entityToDTO).toList();
+    return returnList.stream().map(this::toDTO).toList();
   }
   
   @Override
+  @Transactional
   public void modify(NoteDTO noteDTO) {
-    // log.info("void modify start =========================");    
-    // Long num = noteDTO.getNum();
-    // Note targetNote = repository.findByNum(num);
-    // log.info("targetNote ::: " + targetNote);
-    // targetNote.changeTitle(noteDTO.getTitle());
-    // log.info("changed Title ::: " + targetNote.getTitle());
-    // targetNote.changeContent(noteDTO.getContent());
-    // log.info("changed Content ::: " + noteDTO.getContent());
-    // log.info("===========================================");
-    // log.info(targetNote.getTitle() + " ||||| " + targetNote.getContent());
-    // log.info("===========================================");
-    repository.save(dtoToEntity(noteDTO));
-    // log.info("void modify End ===========================");    
+    Note note = toEntity(noteDTO);
+    // Member member = memberRepository.
+    Member member = memberRepository.findByEmail(noteDTO.getWriterEmail());
+    noteDTO.getAttachDtos().forEach(a -> {
+      Attach attach = Attach.builder()
+      .uuid(a.getUuid())
+      .origin(a.getOrigin())
+      .image(a.isImage())
+      .path(a.getPath())
+      .note(note) // 영속화된 Note 설정
+      .size(a.getSize())
+      .mime(a.getMime())
+          .fileName(a.getFileName())
+          .ext(a.getExt())
+          .url(a.getUrl())
+          .build();
+      attachRepository.save(attach); // 개별 Attach 저장
+  });
+    note.setMember(member);
+    memberRepository.save(member);
+    repository.save(note);
   }
   
   // @Override
@@ -84,84 +89,96 @@ public class NoteServiceImpl implements NoteService{
   //   return null; //repository.save(dtoToEntity(noteDTO)).getNum();
   // }
 
-  @Override
-@Transactional
-public Long register(NoteDTO noteDTO) {
-    log.info("Long register start =========================");
-    log.info(noteDTO);
+//   @Override
+// @Transactional
+// public Long register(NoteDTO noteDTO) {
+//     log.info("Long register start =========================");
+//     log.info(noteDTO);
 
-    // Member 설정
-    Member member = memberRepository.findByEmail(noteDTO.getWriterEmail());
-    noteDTO.setMno(member.getMno());
+//     // Member 설정
+//     Member member = memberRepository.findByEmail(noteDTO.getWriterEmail());
+//     noteDTO.setMno(member.getMno());
 
-    // Note 엔티티 생성
-    Note note = dtoToEntity(noteDTO);
-    note.setMember(member);
+//     // Note 엔티티 생성
+//     Note note = dtoToEntity(noteDTO);
+//     note.setMember(member);
 
-    // Attach DTO -> Attach 엔티티 변환 및 Note에 추가
-    noteDTO.getAttachDtos().forEach(a -> {
-        Attach attach = Attach.builder()
-            .uuid(a.getUuid()) // UUID 확인
-            .origin(a.getOrigin())
-            .image(a.isImage())
-            .path(a.getPath())
-            .note(note) // Note와 연관 관계 설정
-            .size(a.getSize())
-            .mime(a.getMime())
-            .fileName(a.getFileName())
-            .ext(a.getExt())
-            .url(a.getUrl())
-            .build();
-        note.getAttachs().add(attach); // Note의 attachs 리스트에 추가
-    });
+//     // Attach DTO -> Attach 엔티티 변환 및 Note에 추가
+//     noteDTO.getAttachDtos().forEach(a -> {
+//         Attach attach = Attach.builder()
+//             .uuid(a.getUuid()) // UUID 확인
+//             .origin(a.getOrigin())
+//             .image(a.isImage())
+//             .path(a.getPath())
+//             .note(note) // Note와 연관 관계 설정
+//             .size(a.getSize())
+//             .mime(a.getMime())
+//             .fileName(a.getFileName())
+//             .ext(a.getExt())
+//             .url(a.getUrl())
+//             .build();
+//         note.getAttachs().add(attach); // Note의 attachs 리스트에 추가
+//     });
 
-    // Note 저장 (CascadeType.ALL 설정으로 Attach도 저장)
-    Note savedNote = repository.save(note);
+//     // Note 저장 (CascadeType.ALL 설정으로 Attach도 저장)
+//     Note savedNote = repository.save(note);
 
-    log.info("Long register End =========================");
-    return savedNote.getNum();
-}
+//     log.info("Long register End =========================");
+//     return savedNote.getNum();
+// }
 
   
 
-  public Note saveNoteWithAttachments(NoteDTO noteDTO) {
-    Note note = dtoToEntity(noteDTO);
-    repository.save(note); // Note를 먼저 저장하여 영속화
+//   public Note saveNoteWithAttachments(NoteDTO noteDTO) {
+//     Note note = dtoToEntity(noteDTO);
+//     repository.save(note); // Note를 먼저 저장하여 영속화
 
-    // Attach 객체에 영속화된 Note 설정
-    noteDTO.getAttachDtos().forEach(a -> {
-        Attach attach = Attach.builder()
-            .uuid(a.getUuid())
-            .origin(a.getOrigin())
-            .image(a.isImage())
-            .path(a.getPath())
-            .note(note) // 영속화된 Note 설정
-            .size(a.getSize())
-            .mime(a.getMime())
-            .fileName(a.getFileName())
-            .ext(a.getExt())
-            .url(a.getUrl())
-            .build();
-        attachRepository.save(attach); // 개별 Attach 저장
-    });
-    return note;
-}
-
-
-
-// @Override
-// public Long register(NoteDTO noteDTO) {
-//   log.info("Long register start =========================");    
-//   Note note = dtoToEntity(noteDTO);
-
-//   Member member = memberRepository.findByEmail(noteDTO.getWriterEmail());
-//   note.setMember(member);
-
-//   repository.save(note);
-//   Long returnLong = note.getNum();
-//   log.info("Long register End ===========================");    
-//   return returnLong;
+//     // Attach 객체에 영속화된 Note 설정
+//     noteDTO.getAttachDtos().forEach(a -> {
+//         Attach attach = Attach.builder()
+//             .uuid(a.getUuid())
+//             .origin(a.getOrigin())
+//             .image(a.isImage())
+//             .path(a.getPath())
+//             .note(note) // 영속화된 Note 설정
+//             .size(a.getSize())
+//             .mime(a.getMime())
+//             .fileName(a.getFileName())
+//             .ext(a.getExt())
+//             .url(a.getUrl())
+//             .build();
+//         attachRepository.save(attach); // 개별 Attach 저장
+//     });
+//     return note;
 // }
+
+
+
+@Override
+@Transactional
+public Long register(NoteDTO noteDTO) {
+  Note note = toEntity(noteDTO);
+  Member member = memberRepository.findByEmail(noteDTO.getWriterEmail());
+  note.setMember(member);
+  noteDTO.getAttachDtos().forEach(a -> {
+      Attach attach = Attach.builder()
+          .uuid(a.getUuid())
+          .origin(a.getOrigin())
+          .image(a.isImage())
+          .path(a.getPath())
+          .note(note) // 영속화된 Note 설정
+          .size(a.getSize())
+          .mime(a.getMime())
+          .fileName(a.getFileName())
+          .ext(a.getExt())
+          .url(a.getUrl())
+          .build();
+      attachRepository.save(attach); // 개별 Attach 저장
+  });
+  repository.save(note);
+  Long returnLong = note.getNum();
+  return returnLong;
+}
 
   
   @Override
@@ -173,7 +190,7 @@ public Long register(NoteDTO noteDTO) {
 
   @Override
   public List<NoteDTO> allList() {
-    return repository.findAll().stream().map(this::entityToDTO).toList();
+    return repository.findAll().stream().map(this::toDTO).toList();
   }
   
 }

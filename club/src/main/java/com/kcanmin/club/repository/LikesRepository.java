@@ -8,5 +8,5 @@ import com.kcanmin.club.entity.composite.LikesId;
 
 @Repository
 public interface LikesRepository extends JpaRepository<Likes, LikesId>{
-    
+  
 }

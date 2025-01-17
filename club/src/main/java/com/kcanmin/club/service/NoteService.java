@@ -23,7 +23,7 @@ public interface NoteService {
 
   List<NoteDTO> allList();
 
-  default Note dtoToEntity(NoteDTO noteDTO){
+  default Note toEntity(NoteDTO noteDTO){
     Note note = Note
       .builder()
         .num(noteDTO.getNum())
@@ -65,7 +65,7 @@ public interface NoteService {
   // private String url;
 
 // RestController Advice (통합 예외 처리) , 전용 예외 처리(404, 403 등등);
-  default NoteDTO entityToDTO(Note note){
+  default NoteDTO toDTO(Note note){
     NoteDTO dto = NoteDTO
     .builder()
         .num(note.getNum())
@@ -87,6 +87,20 @@ public interface NoteService {
           .uuid(a.getUuid())
           .build()).toList())          
       .build();
+      // dto.setAttachDtos(note.getAttachs().stream().map(a->Attach
+      // .builder()
+      //   .uuid(a.getUuid())
+      //   .origin(a.getOrigin())
+      //   .image(a.isImage())
+      //   .path(a.getPath())
+      //   .fileName(a.getFileName())
+      //   .ext(a.getExt())
+      //   .mime(a.getMime())
+      //   .url(a.getUrl())
+      //   .size(a.getSize())
+      //   .note(note)
+      // .build()).toList()
+      // );
       return dto;
   }
 

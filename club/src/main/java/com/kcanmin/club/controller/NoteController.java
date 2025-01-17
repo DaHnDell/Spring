@@ -6,15 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kcanmin.club.entity.Member;
 import com.kcanmin.club.entity.dto.NoteDTO;
-import com.kcanmin.club.repository.MemberRepository;
 import com.kcanmin.club.service.NoteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
