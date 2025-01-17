@@ -12,7 +12,7 @@ public interface LikesService {
     default Likes toEntity(LikesDTO dto){
       Likes likes = Likes
         .builder()
-          .member(Member.builder().email(dto.getEmail()).build())
+          .member(Member.builder().mno(dto.getMno()).build())
           .note(Note.builder().num(dto.getNum()).build())
         .build();
       return likes;

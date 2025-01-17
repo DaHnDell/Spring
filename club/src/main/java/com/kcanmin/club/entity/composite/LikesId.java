@@ -23,6 +23,7 @@ public class LikesId implements Serializable{
   private Long note;
 
   public LikesId(LikesDTO dto){
-    // this.member = Member.builder().email().build();
+    member = dto.getMno();
+    note = dto.getNum();
   }
 }
