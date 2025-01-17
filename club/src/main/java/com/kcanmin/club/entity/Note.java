@@ -24,7 +24,7 @@ import lombok.Builder.Default;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "member")
+@ToString(exclude = {"member", "attachs"})
 public class Note extends BaseEntity{
   
   @Id
@@ -33,6 +33,7 @@ public class Note extends BaseEntity{
   private String title;
   private String content;
   @ManyToOne(fetch = FetchType.LAZY)
+
   @Setter
   private Member member;
 

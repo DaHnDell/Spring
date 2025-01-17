@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @EnableJpaRepositories
 @IdClass(LikesId.class)
 @Getter
+@ToString
 public class Likes extends BaseEntity{
 
   @Id
